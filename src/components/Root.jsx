@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React  from 'react';
 import 'sanitize.css';
+import 'Styles/general.scss';
 
-export default class Root extends Component {
+export default class Root extends React.Component {
   render () {
     return <p>Hello World :)</p>;
   }
