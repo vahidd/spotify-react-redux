@@ -1,0 +1,18 @@
+{
+  "presets": [
+    "es2015",
+    "es2017",
+    "react"
+  ],
+  "plugins": [
+    "react-hot-loader/babel",
+    "transform-object-rest-spread",
+    [
+      "transform-runtime",
+      {
+        "polyfill": false,
+        "regenerator": true
+      }
+    ]
+  ]
+}
