@@ -8,3 +8,38 @@
   color: #8F9194;
   overflow: auto;
 }
+
+.heading {
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #9c9c9c;
+  padding-left: 18px;
+  margin-bottom: 10px;
+}
+
+.list {
+  padding: 0;
+  margin: 0 0 60px;
+  font-size: 1rem;
+  list-style: none;
+}
+
+.list-item {
+  color: #c7cace;
+  padding: 8px 0 8px 18px;
+  margin-top: 8px;
+  transition: background-color 200ms;
+}
+
+.list-item:hover,
+.list-item.active {
+  background: #28292C;
+  padding-left: 14px;
+  border-left: 4px solid #00D95A;
+}
+
+.list-icon {
+  font-size: 1.5rem;
+  margin-right: 15px;
+}
