@@ -11,17 +11,23 @@ class YourCollection extends React.Component {
     return <div>
       <h2 styleName="heading">Your Collection</h2>
       <ul styleName="list">
-        <li styleName="list-item active">
-          <MirophoneIcon styleName="list-icon"/>
-          Artists
+        <li>
+          <a href="#" styleName="list-item active">
+            <MirophoneIcon styleName="list-icon"/>
+            Artists
+          </a>
         </li>
-        <li styleName="list-item">
-          <AlbumIcon styleName="list-icon"/>
-          Albums
+        <li>
+          <a href="#" styleName="list-item">
+            <AlbumIcon styleName="list-icon"/>
+            Albums
+          </a>
         </li>
-        <li styleName="list-item">
-          <NoteIcon styleName="list-icon"/>
-          Songs
+        <li>
+          <a href="#" styleName="list-item">
+            <NoteIcon styleName="list-icon"/>
+            Songs
+          </a>
         </li>
       </ul>
     </div>;

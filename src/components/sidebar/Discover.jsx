@@ -11,17 +11,23 @@ class Discover extends React.Component {
     return <div>
       <h2 styleName="heading">Discover</h2>
       <ul styleName="list">
-        <li styleName="list-item active">
-          <PlaylistIcon styleName="list-icon"/>
-          New Releases
+        <li>
+          <a styleName="list-item active" href="#">
+            <PlaylistIcon styleName="list-icon"/>
+            New Releases
+          </a>
         </li>
-        <li styleName="list-item">
-          <ChartIcon styleName="list-icon"/>
-          Top Charts
+        <li>
+          <a styleName="list-item" href="#">
+            <ChartIcon styleName="list-icon"/>
+            Top Charts
+          </a>
         </li>
-        <li styleName="list-item">
-          <RadioIcon styleName="list-icon"/>
-          Radio Stations
+        <li>
+          <a styleName="list-item" href="#">
+            <RadioIcon styleName="list-icon"/>
+            Radio Stations
+          </a>
         </li>
       </ul>
     </div>;
