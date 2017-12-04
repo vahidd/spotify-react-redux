@@ -91,6 +91,6 @@ module.exports = {
     host              : '0.0.0.0',
     hotOnly           : true,
     historyApiFallback: true,
-    port              : '6789'
+    port              : configs.parsed.DEV_SERVER_PORT
   }
 };
