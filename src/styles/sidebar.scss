@@ -4,14 +4,14 @@
   position: fixed;
   min-height: 100%;
   max-height: 100%;
-  padding: 30px 0 0;
+  padding: 30px 0 20px;
   color: #8F9194;
   overflow: auto;
 }
 
 .heading {
   text-transform: uppercase;
-  font-size: 1rem;
+  font-size: .9rem;
   font-weight: 600;
   color: #9c9c9c;
   padding-left: 18px;
@@ -31,7 +31,6 @@
   margin-top: 8px;
   transition: background-color 200ms;
   display: block;
-  text-decoration: none;
 }
 
 .list-item:hover,
@@ -44,4 +43,40 @@
 .list-icon {
   font-size: 1.5rem;
   margin-right: 15px;
+}
+
+.add-icon {
+  float: right;
+  margin-right: 12px;
+  background-color: #ABB4BF;
+  color: #212225;
+  padding: 0 2px;
+  height: 15px;
+  border-radius: 3px;
+  font-size: 13px;
+}
+
+.add-icon svg {
+  font-size: 17px;
+  margin-top: -4px;
+}
+
+.playlist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 200px;
+  overflow: auto;
+}
+
+.playlist-item a {
+  font-size: 1rem;
+  color: #7E8082;
+  padding: 7px 5px 7px 20px;
+  display: block;
+  transition: color 150ms;
+}
+
+.playlist-item a:hover {
+  color: lighten(#7E8082, 25%);
 }
