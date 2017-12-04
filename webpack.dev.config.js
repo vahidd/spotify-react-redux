@@ -1,6 +1,7 @@
 const
   webpack = require('webpack'),
   path = require('path'),
+  configs = require('dotenv').config(),
   HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -80,7 +81,10 @@ module.exports = {
       inject  : 'body'
     }),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      CONFIGS: JSON.stringify(configs.parsed)
+    })
   ],
 
   devServer: {
