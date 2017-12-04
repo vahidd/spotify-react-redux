@@ -5,6 +5,7 @@ import styles from 'Styles/sidebar.scss';
 import Discover from 'Components/sidebar/Discover';
 import YourCollection from 'Components/sidebar/YourCollection';
 import YourPlaylists from 'Components/sidebar/YourPlaylists';
+import CurrentUser from 'Components/sidebar/CurrentUser';
 
 class Sidebar extends React.Component {
   render () {
@@ -12,6 +13,7 @@ class Sidebar extends React.Component {
       <Discover/>
       <YourCollection/>
       <YourPlaylists/>
+      <CurrentUser/>
     </div>;
   }
 }

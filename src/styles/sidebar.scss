@@ -80,3 +80,34 @@
 .playlist-item a:hover {
   color: lighten(#7E8082, 25%);
 }
+
+.current-user {
+  margin: 20px;
+}
+
+.current-user-avatar {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 15px;
+  border: 2px solid #00D95A;
+}
+
+.current-user-name {
+  font-size: .9rem;
+}
+
+.current-user-divider {
+  width: 1px;
+  height: 14px;
+  display: inline-block;
+  background: #4b4e54;
+  position: relative;
+  top: 4px;
+  margin: 0 7px;
+}
+
+.current-user-actions-button {
+  font-size: 19px;
+}
