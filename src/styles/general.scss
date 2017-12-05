@@ -7,4 +7,17 @@ a {
   text-decoration: none;
 }
 
+:global {
+  html,
+  body,
+  #app,
+  #app > div {
+    min-height: 100%;
+    height: 100%;
+  }
+  #app {
+    padding-left: 220px;
+  }
+}
+
 @import "ant-styles";

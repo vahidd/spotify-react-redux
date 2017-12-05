@@ -1,5 +1,7 @@
 import React from 'react';
 import CSSModules from 'react-css-modules';
+import { Menu, Dropdown } from 'antd';
+import { Link } from 'react-router-dom';
 
 import ArrowDownIcon from 'react-icons/lib/md/keyboard-arrow-down';
 import styles from 'Styles/sidebar.scss';
@@ -7,6 +9,20 @@ import styles from 'Styles/sidebar.scss';
 class CurrentUser extends React.Component {
   componentDidMount () {
     this.props.fetchCurrentUser();
+  }
+
+  menu () {
+    return <Menu>
+      <Menu.Item key="0">
+        <a href="#">My Profile</a>
+      </Menu.Item>
+      <Menu.Divider/>
+      <Menu.Item key="1">
+        <Link styleName="current-user-actions-button" to="/logout">
+          Logout
+        </Link>
+      </Menu.Item>
+    </Menu>;
   }
 
   render () {
@@ -18,9 +34,11 @@ class CurrentUser extends React.Component {
       <img styleName="current-user-avatar" src={profile.images[0].url}/>
       <span styleName="current-user-name">{profile.display_name}</span>
       <span styleName="current-user-divider"/>
-      <a styleName="current-user-actions-button">
-        <ArrowDownIcon/>
-      </a>
+      <Dropdown overlay={this.menu()} trigger={['click']}>
+        <a href="#" styleName="current-user-actions-button">
+          <ArrowDownIcon/>
+        </a>
+      </Dropdown>
     </div>;
   }
 }
