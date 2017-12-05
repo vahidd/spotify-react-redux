@@ -17,6 +17,7 @@ module.exports = {
     extensions: ['.scss', '.js', '.jsx', '.css'],
     alias     : {
       Components: path.join(__dirname, 'src', 'components'),
+      Containers: path.join(__dirname, 'src', 'containers'),
       Services  : path.join(__dirname, 'src', 'services'),
       Constants : path.join(__dirname, 'src', 'constants'),
       Actions   : path.join(__dirname, 'src', 'store', 'actions'),
