@@ -1,0 +1,32 @@
+:global {
+  .ant-dropdown {
+    background: #fff;
+    min-width: 170px;
+    border-radius: 3px;
+  }
+  .ant-dropdown-menu {
+    padding: 10px 10px;
+    border: 1px solid #eee;
+    box-shadow: none;
+  }
+  .ant-dropdown-menu-item-divider,
+  .ant-dropdown-menu-submenu-title-divider {
+    margin: 10px 17px;
+    background-color: #ececec;
+  }
+  .ant-dropdown-menu-item,
+  .ant-dropdown-menu-submenu-title {
+    padding: 3px 17px;
+    a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #676767;
+    }
+    &:hover {
+      background: transparent;
+      > a {
+        color: #000;
+      }
+    }
+  }
+}

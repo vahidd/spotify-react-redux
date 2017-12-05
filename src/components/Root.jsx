@@ -1,6 +1,8 @@
 import React from 'react';
-import 'sanitize.css';
 import { withRouter } from 'react-router-dom';
+import 'sanitize.css';
+import 'Root/node_modules/antd/lib/style/index.css';
+import 'Root/node_modules/antd/lib/dropdown/style/index.css';
 
 import 'Styles/general.scss';
 import AuthService from 'Services/AuthService';

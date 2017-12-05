@@ -23,7 +23,8 @@ module.exports = {
       Actions   : path.join(__dirname, 'src', 'store', 'actions'),
       Reducers  : path.join(__dirname, 'src', 'store', 'reducers'),
       Styles    : path.join(__dirname, 'src', 'styles'),
-      Root      : path.join(__dirname, 'src')
+      Src       : path.join(__dirname, 'src'),
+      Root      : path.join(__dirname)
     }
   },
 
@@ -42,7 +43,7 @@ module.exports = {
         }
       },
       {
-        test: /\.s?css$/,
+        test: /\.scss$/,
         use : [
           {
             loader : 'style-loader',
@@ -73,6 +74,20 @@ module.exports = {
               sourceMap: true
             }
           }
+        ]
+      },
+      {
+        test: /\.css$/,
+        use : [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader : 'css-loader',
+            options: {
+              minimize: true
+            }
+          },
         ]
       }
     ]
