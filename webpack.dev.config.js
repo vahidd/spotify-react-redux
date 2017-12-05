@@ -18,6 +18,9 @@ module.exports = {
     alias     : {
       Components: path.join(__dirname, 'src', 'components'),
       Services  : path.join(__dirname, 'src', 'services'),
+      Constants : path.join(__dirname, 'src', 'constants'),
+      Actions   : path.join(__dirname, 'src', 'store', 'actions'),
+      Reducers  : path.join(__dirname, 'src', 'store', 'reducers'),
       Styles    : path.join(__dirname, 'src', 'styles'),
       Root      : path.join(__dirname, 'src')
     }
