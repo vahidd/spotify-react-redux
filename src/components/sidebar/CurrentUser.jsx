@@ -3,6 +3,7 @@ import CSSModules from 'react-css-modules';
 import { Menu, Dropdown } from 'antd';
 import { Link } from 'react-router-dom';
 
+import * as RouteConstant from 'Constants/RouteConstants';
 import ArrowDownIcon from 'react-icons/lib/md/keyboard-arrow-down';
 import styles from 'Styles/sidebar.scss';
 
@@ -18,7 +19,7 @@ class CurrentUser extends React.Component {
       </Menu.Item>
       <Menu.Divider/>
       <Menu.Item key="1">
-        <Link styleName="current-user-actions-button" to="/logout">
+        <Link styleName="current-user-actions-button" to={RouteConstant.LOGOUT}>
           Logout
         </Link>
       </Menu.Item>

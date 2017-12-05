@@ -3,6 +3,7 @@ import Sidebar from 'Components/sidebar/Sidebar';
 import { withRouter } from 'react-router-dom';
 import { Route, Switch } from 'react-router-dom';
 
+import * as RouteConstant from 'Constants/RouteConstants';
 import NewReleases from 'Components/NewReleases';
 import Logout from 'Components/Logout';
 
@@ -11,9 +12,9 @@ class App extends React.Component {
     return <div>
       <Sidebar/>
       <Switch>
-        <Route path="/" exact component={NewReleases}/>
-        <Route path="/new-releases" component={NewReleases}/>
-        <Route path="/logout" component={Logout}/>
+        <Route path={RouteConstant.HOME} exact component={NewReleases}/>
+        <Route path={RouteConstant.NEW_RELEASES} component={NewReleases}/>
+        <Route path={RouteConstant.LOGOUT} component={Logout}/>
       </Switch>
     </div>;
   }
