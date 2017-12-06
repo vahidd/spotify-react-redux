@@ -1,11 +1,20 @@
 import React from 'react';
 import CSSModules from 'react-css-modules';
+import { Link } from 'react-router-dom';
 
 import AddIcon from 'react-icons/lib/md/add';
 import styles from 'Styles/sidebar.scss';
 
 class YourPlaylists extends React.Component {
+  componentDidMount () {
+    this.props.fetchPlaylists();
+  }
+
   render () {
+    let playlists = this.props.playlists.data;
+    if (!playlists) {
+      return null;
+    }
     return <div>
       <h2 styleName="heading">
         Your Playlists
@@ -14,16 +23,13 @@ class YourPlaylists extends React.Component {
         </a>
       </h2>
       <ul styleName="playlist">
-        <li styleName="playlist-item"><a href="#">Snowboard Jams</a></li>
-        <li styleName="playlist-item"><a href="#">Chill Work Music</a></li>
-        <li styleName="playlist-item"><a href="#">NOFX</a></li>
-        <li styleName="playlist-item"><a href="#">Workout Jams</a></li>
-        <li styleName="playlist-item"><a href="#">All Jazz</a></li>
-        <li styleName="playlist-item"><a href="#">Christmas Mix</a></li>
-        <li styleName="playlist-item"><a href="#">Just Chill'n</a></li>
-        <li styleName="playlist-item"><a href="#">Kids Mix</a></li>
-        <li styleName="playlist-item"><a href="#">Progressive House</a></li>
-        <li styleName="playlist-item"><a href="#">Rock & Alternative</a></li>
+        {playlists.items.map((playlist, index) => {
+          return <li key={index} styleName="playlist-item">
+            <Link to={`/playlist/${playlist.id}`}>
+              {playlist.name}
+            </Link>
+          </li>;
+        })}
       </ul>
     </div>;
   }
