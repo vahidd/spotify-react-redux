@@ -12,7 +12,7 @@ class YourCollection extends React.Component {
       <h2 styleName="heading">Your Collection</h2>
       <ul styleName="list">
         <li>
-          <a href="#" styleName="list-item active">
+          <a href="#" styleName="list-item">
             <MirophoneIcon styleName="list-icon"/>
             Artists
           </a>

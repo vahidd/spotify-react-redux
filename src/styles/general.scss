@@ -5,6 +5,14 @@ html {
 
 a {
   text-decoration: none;
+  outline: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+    outline: 0;
+  }
 }
 
 :global {

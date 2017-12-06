@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import * as RouteConstant from 'Constants/RouteConstants';
 import NewReleases from 'Components/NewReleases';
+import TopCharts from 'Components/TopCharts';
 import Logout from 'Components/Logout';
 
 class App extends React.Component {
@@ -14,6 +15,7 @@ class App extends React.Component {
       <Switch>
         <Route path={RouteConstant.HOME} exact component={NewReleases}/>
         <Route path={RouteConstant.NEW_RELEASES} component={NewReleases}/>
+        <Route path={RouteConstant.TOP_CHARTS} component={TopCharts}/>
         <Route path={RouteConstant.LOGOUT} component={Logout}/>
       </Switch>
     </div>;

@@ -34,8 +34,8 @@
   display: block;
 }
 
-.list-item:hover,
-.list-item.active {
+.list-item-active,
+.list-item:hover {
   background: #28292C;
   padding-left: 14px;
   border-left: 4px solid #00D95A;
