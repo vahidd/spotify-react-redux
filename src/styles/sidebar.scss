@@ -82,6 +82,18 @@
   color: lighten(#7E8082, 25%);
 }
 
+.create-playlist-input {
+  width: calc(100% - 50px);
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 0;
+  border-bottom: 1px solid #444;
+  outline: 0;
+  color: #fff;
+  font-size: .9rem;
+}
+
 .current-user {
   position: absolute;
   bottom: 0;
