@@ -1,0 +1,26 @@
+.container {
+  height: 350px;
+  img {
+    max-width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    transition: box-shadow 140ms;
+  }
+  &:hover {
+    img {
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+    }
+  }
+}
+
+.name {
+  color: #3C3D3F;
+  font-size: 1.17rem;
+  font-weight: 500;
+  line-height: 1rem;
+}
+
+.artist {
+  color: #8A8E96;
+  font-size: 1rem;
+}
