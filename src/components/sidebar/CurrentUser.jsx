@@ -35,7 +35,7 @@ class CurrentUser extends React.Component {
       <img styleName="current-user-avatar" src={profile.images[0].url}/>
       <span styleName="current-user-name">{profile.display_name}</span>
       <span styleName="current-user-divider"/>
-      <Dropdown overlay={this.menu()} trigger={['click']}>
+      <Dropdown overlay={this.menu()} trigger={['click']} placement="topLeft">
         <a href="#" styleName="current-user-actions-button">
           <ArrowDownIcon/>
         </a>
