@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import 'sanitize.css';
 import 'Root/node_modules/antd/lib/style/index.css';
 import 'Root/node_modules/antd/lib/dropdown/style/index.css';
+import 'Root/node_modules/antd/lib/grid/style/index.css';
 
 import 'Styles/general.scss';
 import AuthService from 'Services/AuthService';
