@@ -13,6 +13,10 @@ a {
     text-decoration: none;
     outline: 0;
   }
+
+  &:hover {
+    color: #01c74f;
+  }
 }
 
 :global {
@@ -26,6 +30,10 @@ a {
   #app {
     padding-left: 220px;
   }
+}
+
+.content {
+  padding: 25px 30px;
 }
 
 @import "ant-styles";
