@@ -107,6 +107,8 @@ module.exports = {
     })
   ],
 
+  devtool: 'eval-source-map',
+
   devServer: {
     host              : '0.0.0.0',
     hotOnly           : true,
