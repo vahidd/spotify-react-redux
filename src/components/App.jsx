@@ -6,7 +6,7 @@ import { Route, Switch } from 'react-router-dom';
 import generalStyles from 'Styles/general';
 import * as RouteConstant from 'Constants/RouteConstants';
 import NewReleases from 'Containers/NewReleasesContainer';
-import TopCharts from 'Components/TopCharts';
+import FeaturedPlaylists from 'Components/FeaturedPlaylists';
 import Logout from 'Components/Logout';
 
 class App extends React.Component {
@@ -17,7 +17,7 @@ class App extends React.Component {
         <Switch>
           <Route path={RouteConstant.HOME} exact component={NewReleases}/>
           <Route path={RouteConstant.NEW_RELEASES} component={NewReleases}/>
-          <Route path={RouteConstant.TOP_CHARTS} component={TopCharts}/>
+          <Route path={RouteConstant.FEATURED_PLAYLISTS} component={FeaturedPlaylists}/>
           <Route path={RouteConstant.LOGOUT} component={Logout}/>
         </Switch>
       </div>

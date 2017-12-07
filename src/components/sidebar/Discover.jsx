@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import * as RouteConstants from 'Constants/RouteConstants';
 import styles from 'Styles/sidebar.scss';
 import PlaylistIcon from 'react-icons/lib/md/queue-music';
-import ChartIcon from 'react-icons/lib/md/insert-chart';
+import NewIcon from 'react-icons/lib/md/fiber-new';
 import RadioIcon from 'react-icons/lib/md/radio';
 
 class Discover extends React.Component {
@@ -29,7 +29,7 @@ class Discover extends React.Component {
             styleName="list-item"
             to={RouteConstants.NEW_RELEASES}
             isActive={this.isNavLinkActive}>
-            <PlaylistIcon styleName="list-icon"/>
+            <NewIcon styleName="list-icon"/>
             New Releases
           </NavLink>
         </li>
@@ -37,9 +37,9 @@ class Discover extends React.Component {
           <NavLink
             activeClassName={styles['list-item-active']}
             styleName="list-item"
-            to={RouteConstants.TOP_CHARTS}>
-            <ChartIcon styleName="list-icon"/>
-            Top Charts
+            to={RouteConstants.FEATURED_PLAYLISTS}>
+            <PlaylistIcon styleName="list-icon"/>
+            Featured Playlists
           </NavLink>
         </li>
         <li>
