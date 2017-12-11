@@ -10,8 +10,9 @@ module.exports = {
     path.resolve(__dirname, 'src') + '/main.js'
   ],
   output : {
-    path    : path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    publicPath: '/',
+    path      : path.resolve(__dirname, 'dist'),
+    filename  : 'bundle.js'
   },
   resolve: {
     extensions: ['.scss', '.js', '.jsx', '.css'],
