@@ -30,7 +30,6 @@ class YourPlaylists extends React.Component {
   }
 
   playlistCreate (val) {
-    console.log('don!');
     this.props.createPlaylist(val);
     this.props.hideCreatePlaylist();
   }
