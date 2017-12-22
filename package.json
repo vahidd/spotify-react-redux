@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/vahidd/spotify-react-redux#readme",
   "dependencies": {
-    "antd": "^3.0.0",
+    "antd": "^3.0.2",
     "axios": "^0.17.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
