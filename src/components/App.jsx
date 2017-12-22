@@ -7,7 +7,7 @@ import generalStyles from 'Styles/general';
 import * as RouteConstant from 'Constants/RouteConstants';
 import NewReleases from 'Containers/NewReleasesContainer';
 import FeaturedPlaylists from 'Components/FeaturedPlaylists';
-import Album from 'Components/album/Album';
+import Album from 'Containers/AlbumContainer';
 import Logout from 'Components/Logout';
 
 class App extends React.Component {
