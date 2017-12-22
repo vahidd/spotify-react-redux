@@ -4,12 +4,14 @@ import { user } from 'Reducers/UserReducer';
 import { playlists } from 'Reducers/PlaylistsReducer';
 import { newReleases } from 'Reducers/NewReleasesReducer';
 import { album } from 'Reducers/AlbumReducer';
+import { artist } from 'Reducers/ArtistReducer';
 
 const rootReducer = combineReducers({
   user,
   playlists,
   newReleases,
-  album
+  album,
+  artist
 });
 
 export default rootReducer;
