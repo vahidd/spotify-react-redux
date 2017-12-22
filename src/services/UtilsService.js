@@ -17,3 +17,12 @@ export function axiosInstance () {
     transformResponse
   });
 }
+
+export function formatSeconds (seconds) {
+  let start = 11, len = 8;
+  if( 3600 > seconds ){
+    start = 14;
+    len = 5;
+  }
+  return new Date(seconds * 1000).toISOString().substr(start, len);
+}
