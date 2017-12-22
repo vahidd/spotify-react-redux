@@ -2,11 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from 'Styles/album.scss';
 import { Row, Col } from 'antd';
+import ReactPlaceholder from 'react-placeholder';
 
+import Placeholder from 'Components/album/AlbumPlaceholder';
 import Image from 'Components/common/Image';
 import Track from 'Components/album/Track';
 
 export default class Album extends React.Component {
+
+  isReady () {
+    let {album} = this.props, {artists} = this.props;
+    return !!(album.name && artists[0]);
+  }
+
   componentDidMount () {
     this.props.fetchAlbum();
   }
@@ -43,10 +51,9 @@ export default class Album extends React.Component {
     </div>;
   }
 
-  render () {
-    let {album} = this.props, {artists} = this.props;
-    if (!album.name || !artists[0]) {
-      return null;
+  component () {
+    if (!this.isReady()) {
+      return <span/>;
     }
     return <div className={styles.album}>
       <Row gutter={40}>
@@ -59,6 +66,12 @@ export default class Album extends React.Component {
         </Col>
       </Row>
     </div>;
+  }
+
+  render () {
+    return <ReactPlaceholder ready={this.isReady()} customPlaceholder={<Placeholder/>}>
+      {this.component()}
+    </ReactPlaceholder>;
   }
 }
 
