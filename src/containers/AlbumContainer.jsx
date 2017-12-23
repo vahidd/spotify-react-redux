@@ -24,6 +24,6 @@ const mapDispatchToProps = (dispatch, props) => {
   };
 };
 
-const NewReleasesContainer = props => <Album {...props} />;
+const AlbumContainer = props => <Album {...props} />;
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewReleasesContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(AlbumContainer);
