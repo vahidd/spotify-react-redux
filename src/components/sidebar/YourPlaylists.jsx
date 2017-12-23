@@ -2,10 +2,10 @@ import React from 'react';
 import CSSModules from 'react-css-modules';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 import AddIcon from 'react-icons/lib/md/add';
+
 import styles from 'Styles/sidebar.scss';
-import CreatePlayList from 'Components/sidebar/CreatePlaylist';
+import CreatePlaylistModal from 'Components/sidebar/CreatePlaylistModal';
 
 class YourPlaylists extends React.Component {
 
@@ -18,8 +18,6 @@ class YourPlaylists extends React.Component {
 
   componentDidMount () {
     this.props.fetchPlaylists();
-    this.playlistCreate = this.playlistCreate.bind(this);
-    this.playlistCreateCancel = this.playlistCreateCancel.bind(this);
   }
 
   componentDidUpdate () {
@@ -27,15 +25,6 @@ class YourPlaylists extends React.Component {
       this.setState({
         playListContainerNode: this.refs.playlists
       });
-  }
-
-  playlistCreate (val) {
-    this.props.createPlaylist(val);
-    this.props.hideCreatePlaylist();
-  }
-
-  playlistCreateCancel () {
-    this.props.hideCreatePlaylist();
   }
 
   render () {
@@ -51,13 +40,6 @@ class YourPlaylists extends React.Component {
         </a>
       </h2>
       <ul styleName="playlist" ref="playlists">
-        {this.props.isCreateOpen && <li>
-          <CreatePlayList
-            isOpen={this.props.isCreateOpen}
-            done={this.playlistCreate}
-            cancel={this.playlistCreateCancel}
-            containerNode={this.state.playListContainerNode}/>
-        </li>}
         {playlists.items.map((playlist, index) => {
           return <li key={index} styleName="playlist-item">
             <Link to={`/playlist/${playlist.id}`}>
@@ -66,17 +48,24 @@ class YourPlaylists extends React.Component {
           </li>;
         })}
       </ul>
+      <CreatePlaylistModal
+        isOpen={this.props.isCreatePlayListModalOpen}
+        open={this.props.showCreatePlaylist}
+        create={this.props.createPlaylist}
+        isCreating={this.props.isCreatingPlaylist}
+        close={this.props.hideCreatePlaylist}/>
     </div>;
   }
 }
 
 YourPlaylists.propTypes = {
-  isCreateOpen      : PropTypes.bool.isRequired,
-  playlists         : PropTypes.object.isRequired,
-  fetchPlaylists    : PropTypes.func.isRequired,
-  createPlaylist    : PropTypes.func.isRequired,
-  hideCreatePlaylist: PropTypes.func.isRequired,
-  showCreatePlaylist: PropTypes.func.isRequired
+  playlists                : PropTypes.object.isRequired,
+  fetchPlaylists           : PropTypes.func.isRequired,
+  createPlaylist           : PropTypes.func.isRequired,
+  showCreatePlaylist       : PropTypes.func.isRequired,
+  hideCreatePlaylist       : PropTypes.func.isRequired,
+  isCreatePlayListModalOpen: PropTypes.bool.isRequired,
+  isCreatingPlaylist       : PropTypes.bool.isRequired
 };
 
 export default CSSModules(YourPlaylists, styles);

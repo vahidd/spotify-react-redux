@@ -2,7 +2,8 @@ import * as ActionsConstants from 'Constants/ActionConstants';
 
 let defaultState = {
   isFetching               : false,
-  sidebarCreatePlaylistOpen: false,
+  isCreatePlayListModalOpen: false,
+  isCreatingPlaylist       : false,
   data                     : null
 };
 
@@ -18,16 +19,28 @@ export function playlists (state = defaultState, action) {
         data      : action.response
       };
       break;
-    case ActionsConstants.SHOW_SIDEBAR_CREATE_PLAYLIST:
+    case ActionsConstants.SHOW_CREATE_PLAYLIST_MODAL:
       return {
         ...state,
-        sidebarCreatePlaylistOpen: true
+        isCreatePlayListModalOpen: true
       };
       break;
-    case ActionsConstants.HIDE_SIDEBAR_CREATE_PLAYLIST:
+    case ActionsConstants.HIDE_CREATE_PLAYLIST_MODAL:
       return {
         ...state,
-        sidebarCreatePlaylistOpen: false
+        isCreatePlayListModalOpen: false
+      };
+      break;
+    case ActionsConstants.CREATE_PLAYLIST_REQUEST:
+      return {
+        ...state,
+        isCreatingPlaylist: true
+      };
+      break;
+    case ActionsConstants.CREATE_PLAYLIST_RESPONSE:
+      return {
+        ...state,
+        isCreatingPlaylist: false
       };
       break;
     default:

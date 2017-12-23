@@ -24,15 +24,15 @@ export function fetchCurrentUserPlaylists (limit = 50, offset = 0) {
   };
 }
 
-export function showSidebarCreatePlaylist () {
+export function showCreatePlayListModal () {
   return {
-    type: ActionsConstants.SHOW_SIDEBAR_CREATE_PLAYLIST
+    type: ActionsConstants.SHOW_CREATE_PLAYLIST_MODAL
   };
 }
 
-export function hideSidebarCreatePlaylist () {
+export function hideCreatePlayListModal () {
   return {
-    type: ActionsConstants.HIDE_SIDEBAR_CREATE_PLAYLIST
+    type: ActionsConstants.HIDE_CREATE_PLAYLIST_MODAL
   };
 }
 
@@ -55,8 +55,8 @@ export function createPlaylist (name, description = '', isPublic = true, collabo
     dispatch(createPlaylistRequest());
     return axiosInstance().post(uri, {name, description, 'public': isPublic, collaborative})
       .then((res) => {
-        dispatch(fetchCurrentUserPlaylists());
         dispatch(createPlaylistResponse(res.data));
+        dispatch(fetchCurrentUserPlaylists());
       });
   };
 }
