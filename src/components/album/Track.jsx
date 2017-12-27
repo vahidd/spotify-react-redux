@@ -10,11 +10,11 @@ export default class Track extends React.Component {
 
   menu () {
     return <Menu>
-      <Menu.Item key="0">
+      <Menu.Item>
         <a href="#">Save to Your Music</a>
       </Menu.Item>
       <Menu.Divider/>
-      <Menu.Item key="0">
+      <Menu.Item>
         <a href="#">Copy Song Link</a>
       </Menu.Item>
     </Menu>;
