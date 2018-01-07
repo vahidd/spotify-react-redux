@@ -1,12 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from 'Styles/album.scss';
-import { Row, Col, Icon } from 'antd';
-import { Menu, Dropdown } from 'antd';
+import { Menu, Dropdown, Row, Col, Icon, notification } from 'antd';
 
 import { formatSeconds } from 'Services/UtilsService';
 
 export default class Track extends React.Component {
+
+  constructor (props) {
+    super(props);
+    this.copyLink = this.copyLink.bind(this);
+  }
+
+  copyLink () {
+    let
+      textarea = document.createElement('textarea'),
+      link = this.props.track.external_urls.spotify;
+    textarea.textContent = link;
+    textarea.style.position = 'fixed';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+      document.execCommand('copy');
+      notification.success({
+        placement  : 'bottomRight',
+        message    : 'Copied!',
+        description: <span style={{wordBreak: 'break-word'}}>{link}</span>,
+        duration   : 2
+      });
+    } catch (err) {
+      notification.error({
+        placement  : 'bottomRight',
+        message    : 'Whoops something went wrong!',
+        description: <span style={{wordBreak: 'break-word'}}>{link}</span>,
+        duration   : 10
+      });
+    }
+    finally {
+      document.body.removeChild(textarea);
+    }
+  }
 
   menu () {
     return <Menu>
@@ -15,7 +48,7 @@ export default class Track extends React.Component {
       </Menu.Item>
       <Menu.Divider/>
       <Menu.Item>
-        <a href="#">Copy Song Link</a>
+        <a onClick={this.copyLink} href="#">Copy Song Link</a>
       </Menu.Item>
     </Menu>;
   }

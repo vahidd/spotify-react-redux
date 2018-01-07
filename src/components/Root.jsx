@@ -9,6 +9,7 @@ import 'Root/node_modules/antd/lib/button/style/index.css';
 import 'Root/node_modules/antd/lib/form/style/index.css';
 import 'Root/node_modules/antd/lib/input/style/index.css';
 import 'Root/node_modules/antd/lib/checkbox/style/index.css';
+import 'Root/node_modules/antd/lib/notification/style/index.css';
 
 import 'Styles/general.scss';
 import AuthService from 'Services/AuthService';
