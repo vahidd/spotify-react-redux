@@ -11,8 +11,17 @@
 }
 
 .album-artist {
-  font-size: 1.5rem;
   margin-bottom: 0;
+  display: inline-block;
+  margin-right: 5px;
+  color: #414141;
+  a {
+    color: #414141;
+    font-size: 1.5rem;
+    &:hover {
+      color: #00D95A;
+    }
+  }
 }
 
 .label {

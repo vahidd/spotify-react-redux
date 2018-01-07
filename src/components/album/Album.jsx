@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from 'Styles/album.scss';
 import { Row, Col } from 'antd';
+import { Link } from 'react-router-dom';
 import ReactPlaceholder from 'react-placeholder';
 
 import Placeholder from 'Components/album/AlbumPlaceholder';
@@ -32,7 +33,12 @@ export default class Album extends React.Component {
     let {album} = this.props;
     return <div>
       <h2 className={styles['album-title']}>{album.name}</h2>
-      <h1 className={styles['album-artist']}>{album.artists[0].name}</h1>
+      {album.artists.map((artist, index) => {
+        return <h1 key={index} className={styles['album-artist']}>
+          <Link to={"/artist/" + artist.id}>{artist.name}</Link>
+          {album.artists.length !== (index + 1) ? ', ' : ''}
+        </h1>;
+      })}
       <p className={styles['label']}>{album.label}</p>
     </div>;
   }
