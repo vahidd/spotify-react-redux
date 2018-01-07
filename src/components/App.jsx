@@ -8,6 +8,7 @@ import * as RouteConstant from 'Constants/RouteConstants';
 import NewReleases from 'Containers/NewReleasesContainer';
 import FeaturedPlaylists from 'Components/FeaturedPlaylists';
 import Album from 'Containers/AlbumContainer';
+import Artist from 'Containers/ArtistContainer';
 import Logout from 'Components/Logout';
 
 class App extends React.Component {
@@ -21,6 +22,7 @@ class App extends React.Component {
           <Route path={RouteConstant.FEATURED_PLAYLISTS} component={FeaturedPlaylists}/>
           <Route path={RouteConstant.ALBUM} component={Album}/>
           <Route path={RouteConstant.LOGOUT} component={Logout}/>
+          <Route path={RouteConstant.ARTIST} component={Artist}/>
         </Switch>
       </div>
     </div>;
