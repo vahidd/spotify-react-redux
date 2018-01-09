@@ -16,3 +16,7 @@ export const getAlbumArtists = (state, album) => {
   });
   return artists;
 };
+
+export const getArtist = (state, props) => {
+  return state.artist.artists[props.match.params.id] || {};
+};
