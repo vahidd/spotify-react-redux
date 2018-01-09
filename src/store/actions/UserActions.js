@@ -23,3 +23,78 @@ export function fetchCurrentUser () {
       });
   };
 }
+
+function fetchFollowingStatusRequest () {
+  return {
+    type: ActionsConstants.FETCH_FOLLOWING_STATUS_REQUEST
+  };
+}
+
+function fetchFollowingStatusResponse (ids, type, response) {
+  return {
+    type  : ActionsConstants.FETCH_FOLLOWING_STATUS_RESPONSE,
+    ids,
+    idType: type,
+    response
+  };
+}
+
+export function fetchFollowingStatus (ids, type) {
+  return (dispatch) => {
+    dispatch(fetchFollowingStatusRequest());
+    return axiosInstance().get(CONFIGS.API_URL + '/me/following/contains', {params: {ids: ids.join(','), type}})
+      .then((res) => {
+        dispatch(fetchFollowingStatusResponse(ids, type, res.data));
+      });
+  };
+}
+
+function followRequest () {
+  return {
+    type: ActionsConstants.FOLLOW_REQUEST
+  };
+}
+
+function followResponse (ids, type, response) {
+  return {
+    type  : ActionsConstants.FOLLOW_RESPONSE,
+    ids,
+    idType: type,
+    response
+  };
+}
+
+export function follow (ids, type) {
+  return (dispatch) => {
+    dispatch(followRequest());
+    return axiosInstance().put(CONFIGS.API_URL + '/me/following', {params: {ids: ids.join(','), type}})
+      .then((res) => {
+        dispatch(followResponse(ids, type, res.data));
+      });
+  };
+}
+
+function unfollowRequest () {
+  return {
+    type: ActionsConstants.UNFOLLOW_REQUEST
+  };
+}
+
+function unfollowResponse (ids, type, response) {
+  return {
+    type  : ActionsConstants.UNFOLLOW_RESPONSE,
+    ids,
+    idType: type,
+    response
+  };
+}
+
+export function unfollow (ids, type) {
+  return (dispatch) => {
+    dispatch(unfollowRequest());
+    return axiosInstance().delete(CONFIGS.API_URL + '/me/following', {params: {ids: ids.join(','), type}})
+      .then((res) => {
+        dispatch(unfollowResponse(ids, type, res.data));
+      });
+  };
+}

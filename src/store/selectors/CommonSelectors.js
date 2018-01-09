@@ -20,3 +20,8 @@ export const getAlbumArtists = (state, album) => {
 export const getArtist = (state, props) => {
   return state.artist.artists[props.match.params.id] || {};
 };
+
+export const getIsFollowing = (state, props, type) => {
+  let isFollowing = state.user.following[type][props.match.params.id];
+  return typeof isFollowing === 'undefined' ? null : isFollowing;
+};

@@ -30,7 +30,12 @@ export default class Artist extends React.Component {
         <header className={styles.header}>
           <span className={styles['followers-count']}>{formatNumber(artist.followers.total)} Followers</span>
           <h1 className={styles['artist-name']}>{artist.name}</h1>
-          <Button className={styles['follow-button']} ghost>Follow</Button>
+          <Button
+            className={styles['follow-button']}
+            type={this.props.isFollowing === true ? 'primary' : 'default'}
+            ghost={this.props.isFollowing === false}
+            disabled={this.props.isFollowing === null}
+          >{this.props.isFollowing === true ? 'Unfollow' : 'Follow'}</Button>
           <Dropdown overlay={this.menu()} trigger={['click']} placement="bottomLeft">
             <a href="#" className={styles['more-button']}>
               <Icon type="ellipsis"/>
@@ -43,5 +48,6 @@ export default class Artist extends React.Component {
 }
 
 Artist.propTypes = {
-  artist: PropTypes.shape({}).isRequired
+  artist     : PropTypes.shape({}).isRequired,
+  isFollowing: PropTypes.oneOf([true, false, null])
 };
