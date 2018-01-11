@@ -1,5 +1,12 @@
+
 # spotify-react-redux
-React redux implementation of Spotify based on Spotify's web APIs.
+React redux implementation of Spotify based on Spotify's web APIs. This client uses spotify's web API, The client is gonna have all spotify's feature except the playback as there is no way to play on the web. Recently they've added web [playback SDK](https://beta.developer.spotify.com/documentation/web-playback-sdk/) but the SDK does not allow you to play a specific song, you are only able to do these things:
+
+ - Create a new player in Spotify Connect
+ - Stream an audio track in supported browsers
+ - Get metadata for the current track
+ - Get metadata about the user’s listening session
+ - Control local playback (pause, resume, volume, etc)
 
 ### How to setup
 1- Get the project:
