@@ -15,12 +15,25 @@ function fetchArtistResponse (artistId, response) {
   };
 }
 
-export function fetchArtist (artistId) {
+export function fetchArtist (artistId, fetchSimilarArtists = false) {
   return (dispatch) => {
     dispatch(fetchArtistRequest());
     return axiosInstance().get(CONFIGS.API_URL + '/artists/' + artistId)
       .then((res) => {
-        dispatch(fetchArtistResponse(artistId, res.data));
+        if (fetchSimilarArtists) {
+          let artistResponse = {...res.data, similarArtists: []};
+          axiosInstance().get(CONFIGS.API_URL + `/artists/${artistId}/related-artists`)
+            .then((similarArtistsRes) => {
+              artistResponse.similarArtists = similarArtistsRes.data.artists;
+              dispatch(fetchArtistResponse(artistId, artistResponse));
+            })
+            .catch(() => {
+              dispatch(fetchArtistResponse(artistId, artistResponse));
+            });
+        }
+        else {
+          dispatch(fetchArtistResponse(artistId, res.data));
+        }
       });
   };
 }

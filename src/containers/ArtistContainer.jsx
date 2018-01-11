@@ -11,7 +11,7 @@ const mapStateToProps = () => {
     let artist = getArtist(state, props);
     return {
       artist,
-      isFollowed : getIsFollowing(state, props, 'artist'),
+      isFollowed           : getIsFollowing(state, props, 'artist'),
       isFollowOrUnfollowing: getFollowActionFetcingStatus(state, 'artist')
     };
   };

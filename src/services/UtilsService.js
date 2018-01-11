@@ -32,3 +32,20 @@ export function formatNumber (number) {
     return i && c !== '.' && ((a.length - i) % 3 === 0) ? ',' + c : c;
   });
 }
+
+export function copyToClipboard (text) {
+  let textarea = document.createElement('textarea');
+  textarea.textContent = text;
+  textarea.style.position = 'fixed';
+  document.body.appendChild(textarea);
+  textarea.select();
+  try {
+    document.execCommand('copy');
+  } catch (err) {
+    return false;
+  }
+  finally {
+    document.body.removeChild(textarea);
+  }
+  return true;
+}
