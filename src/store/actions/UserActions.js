@@ -24,9 +24,11 @@ export function fetchCurrentUser () {
   };
 }
 
-function fetchFollowingStatusRequest () {
+function fetchFollowingStatusRequest (ids, type) {
   return {
-    type: ActionsConstants.FETCH_FOLLOWING_STATUS_REQUEST
+    type  : ActionsConstants.FETCH_FOLLOWING_STATUS_REQUEST,
+    ids,
+    idType: type
   };
 }
 
@@ -41,7 +43,7 @@ function fetchFollowingStatusResponse (ids, type, response) {
 
 export function fetchFollowingStatus (ids, type) {
   return (dispatch) => {
-    dispatch(fetchFollowingStatusRequest());
+    dispatch(fetchFollowingStatusRequest(ids, type));
     return axiosInstance().get(CONFIGS.API_URL + '/me/following/contains', {params: {ids: ids.join(','), type}})
       .then((res) => {
         dispatch(fetchFollowingStatusResponse(ids, type, res.data));
@@ -49,9 +51,11 @@ export function fetchFollowingStatus (ids, type) {
   };
 }
 
-function followRequest () {
+function followRequest (ids, type) {
   return {
-    type: ActionsConstants.FOLLOW_REQUEST
+    type  : ActionsConstants.FOLLOW_REQUEST,
+    ids,
+    idType: type,
   };
 }
 
@@ -66,17 +70,20 @@ function followResponse (ids, type, response) {
 
 export function follow (ids, type) {
   return (dispatch) => {
-    dispatch(followRequest());
-    return axiosInstance().put(CONFIGS.API_URL + '/me/following', {params: {ids: ids.join(','), type}})
+    dispatch(followRequest(ids, type));
+    return axiosInstance().put(CONFIGS.API_URL + '/me/following', {}, {params: {ids: ids.join(','), type}})
       .then((res) => {
         dispatch(followResponse(ids, type, res.data));
+        dispatch(fetchFollowingStatus(ids, type));
       });
   };
 }
 
-function unfollowRequest () {
+function unfollowRequest (ids, type) {
   return {
-    type: ActionsConstants.UNFOLLOW_REQUEST
+    type  : ActionsConstants.UNFOLLOW_REQUEST,
+    ids,
+    idType: type
   };
 }
 
@@ -91,10 +98,11 @@ function unfollowResponse (ids, type, response) {
 
 export function unfollow (ids, type) {
   return (dispatch) => {
-    dispatch(unfollowRequest());
+    dispatch(unfollowRequest(ids, type));
     return axiosInstance().delete(CONFIGS.API_URL + '/me/following', {params: {ids: ids.join(','), type}})
       .then((res) => {
         dispatch(unfollowResponse(ids, type, res.data));
+        dispatch(fetchFollowingStatus(ids, type));
       });
   };
 }

@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { fetchArtist } from 'Actions/ArtistActions';
-import { fetchFollowingStatus } from 'Actions/UserActions';
-import { getArtist, getIsFollowing } from 'Src/store/selectors/CommonSelectors';
+import { fetchFollowingStatus, follow, unfollow } from 'Actions/UserActions';
+import { getArtist, getIsFollowing, getFollowActionFetcingStatus } from 'Src/store/selectors/CommonSelectors';
 import Artist from 'Components/artist/Artist';
 
 const mapStateToProps = () => {
@@ -11,7 +11,8 @@ const mapStateToProps = () => {
     let artist = getArtist(state, props);
     return {
       artist,
-      isFollowing: getIsFollowing(state, props, 'artist')
+      isFollowed : getIsFollowing(state, props, 'artist'),
+      isFollowOrUnfollowing: getFollowActionFetcingStatus(state, 'artist')
     };
   };
 };
@@ -23,10 +24,10 @@ const mapDispatchToProps = (dispatch, props) => {
       dispatch(fetchArtist(props.match.params.id, true));
     },
     follow     : () => {
-
+      dispatch(follow([props.match.params.id], 'artist'));
     },
     unfollow   : () => {
-
+      dispatch(unfollow([props.match.params.id], 'artist'));
     }
   };
 };

@@ -22,6 +22,10 @@ export const getArtist = (state, props) => {
 };
 
 export const getIsFollowing = (state, props, type) => {
-  let isFollowing = state.user.following[type][props.match.params.id];
+  let isFollowing = state.user.following[type].ids[props.match.params.id];
   return typeof isFollowing === 'undefined' ? null : isFollowing;
+};
+
+export const getFollowActionFetcingStatus = (state, type) => {
+  return state.user.following[type].isFetching;
 };

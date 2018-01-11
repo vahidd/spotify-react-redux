@@ -8,6 +8,18 @@ import styles from 'Styles/artist.scss';
 export default class Artist extends React.Component {
   componentDidMount () {
     this.props.fetchArtist();
+    this.followClick = this.followClick.bind(this);
+  }
+
+  followClick () {
+    switch (this.props.isFollowed) {
+      case true:
+        this.props.unfollow();
+        break;
+      case false:
+        this.props.follow();
+        break;
+    }
   }
 
   menu () {
@@ -32,10 +44,12 @@ export default class Artist extends React.Component {
           <h1 className={styles['artist-name']}>{artist.name}</h1>
           <Button
             className={styles['follow-button']}
-            type={this.props.isFollowing === true ? 'primary' : 'default'}
-            ghost={this.props.isFollowing === false}
-            disabled={this.props.isFollowing === null}
-          >{this.props.isFollowing === true ? 'Unfollow' : 'Follow'}</Button>
+            type={this.props.isFollowed === true ? 'primary' : 'default'}
+            ghost={this.props.isFollowed === false}
+            onClick={this.followClick}
+            disabled={this.props.isFollowed === null}
+            loading={this.props.isFollowOrUnfollowing}
+          >{this.props.isFollowed === true ? 'Unfollow' : 'Follow'}</Button>
           <Dropdown overlay={this.menu()} trigger={['click']} placement="bottomLeft">
             <a href="#" className={styles['more-button']}>
               <Icon type="ellipsis"/>
@@ -48,6 +62,9 @@ export default class Artist extends React.Component {
 }
 
 Artist.propTypes = {
-  artist     : PropTypes.shape({}).isRequired,
-  isFollowing: PropTypes.oneOf([true, false, null])
+  artist               : PropTypes.shape({}).isRequired,
+  follow               : PropTypes.func.isRequired,
+  unfollow             : PropTypes.func.isRequired,
+  isFollowed           : PropTypes.oneOf([true, false, null]),
+  isFollowOrUnfollowing: PropTypes.oneOf([true, false])
 };
