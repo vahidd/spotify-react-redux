@@ -4,6 +4,7 @@ import styles from 'Styles/album.scss';
 import { Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import ReactPlaceholder from 'react-placeholder';
+import { mapValues } from 'lodash';
 
 import Placeholder from 'Components/album/AlbumPlaceholder';
 import Image from 'Components/common/Image';
@@ -11,13 +12,39 @@ import Track from 'Components/album/Track';
 
 export default class Album extends React.Component {
 
-  isReady () {
-    let {album} = this.props, {artists} = this.props;
-    return !!(album.name && artists[0]);
+  constructor (props) {
+    super(props);
+    this.state = {
+      containAlbumTracksFetched: false
+    };
   }
 
   componentDidMount () {
     this.props.fetchAlbum();
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (this.isReady(nextProps.album, nextProps.artists) && !this.state.containAlbumTracksFetched) {
+      this.setState({
+        containAlbumTracksFetched: true
+      });
+      this.props.containTracks(Object.values(mapValues(nextProps.album.tracks.items, 'id')));
+    }
+  }
+
+  isReady (customAlbum = null, customArtists = null) {
+    let
+      album = customAlbum === null ? this.props.album : customAlbum,
+      artists = customArtists === null ? this.props.artists : customArtists;
+    return !!(album.name && artists[0]);
+  }
+
+  toggleSaveTrack (track) {
+    if (this.props.savedTracks[track.id]) {
+      this.props.removeSavedTrack([track.id]);
+    } else {
+      this.props.saveTracks([track.id]);
+    }
   }
 
   cover () {
@@ -35,7 +62,7 @@ export default class Album extends React.Component {
       <h2 className={styles['album-title']}>{album.name}</h2>
       {album.artists.map((artist, index) => {
         return <h1 key={index} className={styles['album-artist']}>
-          <Link to={"/artist/" + artist.id}>{artist.name}</Link>
+          <Link to={'/artist/' + artist.id}>{artist.name}</Link>
           {album.artists.length !== (index + 1) ? ', ' : ''}
         </h1>;
       })}
@@ -49,8 +76,11 @@ export default class Album extends React.Component {
       <span className={styles['track-count']}>{album.tracks.total} Track(s)</span>
       <ul className={styles.tracks}>
         {album.tracks.items.map((track, key) => {
+          let isSaved = this.props.isSavedTracksFetching || typeof this.props.savedTracks[track.id] === 'undefined'
+            ? null
+            : this.props.savedTracks[track.id];
           return <li key={key}>
-            <Track track={track}/>
+            <Track track={track} isSaved={isSaved} toggleSaveTrack={() => {this.toggleSaveTrack(track);}}/>
           </li>;
         })}
       </ul>
@@ -82,6 +112,10 @@ export default class Album extends React.Component {
 }
 
 Album.propTypes = {
-  album  : PropTypes.shape({}).isRequired,
-  artists: PropTypes.arrayOf(PropTypes.shape({})).isRequired
+  containTracks        : PropTypes.func.isRequired,
+  saveTracks           : PropTypes.func.isRequired,
+  removeSavedTrack     : PropTypes.func.isRequired,
+  album                : PropTypes.shape({}).isRequired,
+  artists              : PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  isSavedTracksFetching: PropTypes.bool.isRequired
 };

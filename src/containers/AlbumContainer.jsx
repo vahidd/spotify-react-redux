@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchAlbum } from 'Actions/AlbumActions';
-import { getAlbum, getAlbumArtists } from 'Src/store/selectors/CommonSelectors';
+import { containTracks, saveTracks, removeTracks } from 'Actions/UserActions';
+import { getAlbum, getAlbumArtists, getSavedTracks, isSavedTracksFetching } from 'Src/store/selectors/CommonSelectors';
 import Album from 'Components/album/Album';
 
 const mapStateToProps = () => {
@@ -11,15 +12,26 @@ const mapStateToProps = () => {
       artists = getAlbumArtists(state, album);
     return {
       album,
-      artists
+      artists,
+      savedTracks          : getSavedTracks(state),
+      isSavedTracksFetching: isSavedTracksFetching(state)
     };
   };
 };
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    fetchAlbum: () => {
+    fetchAlbum      : () => {
       dispatch(fetchAlbum(props.match.params.id, true));
+    },
+    containTracks   : (tracks) => {
+      dispatch(containTracks(tracks));
+    },
+    saveTracks      : (tracks) => {
+      dispatch(saveTracks(tracks));
+    },
+    removeSavedTrack: (tracks) => {
+      dispatch(removeTracks(tracks));
     }
   };
 };

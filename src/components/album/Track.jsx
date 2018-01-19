@@ -43,8 +43,10 @@ export default class Track extends React.Component {
 
   menu () {
     return <Menu>
-      <Menu.Item>
-        <a href="#">Save to Your Music</a>
+      <Menu.Item disabled={this.props.isSaved === null}>
+        <a href="#" onClick={this.props.toggleSaveTrack} disabled={this.props.isSaved === null}>
+          {this.props.isSaved === null || this.props.isSaved === false ? 'Save to Your Music' : 'Remove from Your Music'}
+        </a>
       </Menu.Item>
       <Menu.Divider/>
       <Menu.Item>
@@ -75,5 +77,7 @@ export default class Track extends React.Component {
 }
 
 Track.propTypes = {
-  track: PropTypes.shape({}).isRequired
+  track          : PropTypes.shape({}).isRequired,
+  toggleSaveTrack: PropTypes.func.isRequired,
+  isSaved        : PropTypes.oneOf([null, true, false])
 };
