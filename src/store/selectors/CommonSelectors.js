@@ -26,7 +26,7 @@ export const getIsFollowing = (state, props, type) => {
   return typeof isFollowing === 'undefined' ? null : isFollowing;
 };
 
-export const getFollowActionFetcingStatus = (state, type) => {
+export const getFollowActionFetchingStatus = (state, type) => {
   return state.user.following[type].isFetching;
 };
 
@@ -38,3 +38,12 @@ export const getSavedTracks = (state) => {
   return state.user.savedTracks.tracks;
 };
 
+export const getSimilarArtists = (state, props) => {
+  let similar = state.artist.similarArtists.artists[props.match.params.id];
+  return similar || [];
+};
+
+export const getArtistTopTracks = (state, props) => {
+  let tracks = state.artist.topTracks.artists[props.match.params.id];
+  return tracks || [];
+};
