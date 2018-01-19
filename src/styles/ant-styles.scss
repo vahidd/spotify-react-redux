@@ -29,6 +29,14 @@
         color: #000;
       }
     }
+    &-disabled {
+      opacity: .5;
+      &:hover {
+        > a {
+          color: #676767;
+        }
+      }
+    }
   }
 
   $primary-color: #21c55e;

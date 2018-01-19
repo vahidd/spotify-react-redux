@@ -1,9 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-import { fetchArtist } from 'Actions/ArtistActions';
+import { fetchArtist, fetchSimilarArtists, fetchArtistTopTracks } from 'Actions/ArtistActions';
 import { fetchFollowingStatus, follow, unfollow } from 'Actions/UserActions';
-import { getArtist, getIsFollowing, getFollowActionFetcingStatus } from 'Src/store/selectors/CommonSelectors';
+import {
+  getArtist,
+  getIsFollowing,
+  getFollowActionFetchingStatus,
+  getSimilarArtists,
+  getArtistTopTracks
+} from 'Src/store/selectors/CommonSelectors';
 import Artist from 'Components/artist/Artist';
 
 const mapStateToProps = () => {
@@ -11,22 +18,30 @@ const mapStateToProps = () => {
     let artist = getArtist(state, props);
     return {
       artist,
+      similarArtists       : getSimilarArtists(state, props),
+      topTracks            : getArtistTopTracks(state, props),
       isFollowed           : getIsFollowing(state, props, 'artist'),
-      isFollowOrUnfollowing: getFollowActionFetcingStatus(state, 'artist')
+      isFollowOrUnfollowing: getFollowActionFetchingStatus(state, 'artist')
     };
   };
 };
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    fetchArtist: () => {
+    fetchArtist        : () => {
       dispatch(fetchFollowingStatus([props.match.params.id], 'artist'));
-      dispatch(fetchArtist(props.match.params.id, true));
+      dispatch(fetchArtist(props.match.params.id));
     },
-    follow     : () => {
+    fetchSimilarArtists: () => {
+      dispatch(fetchSimilarArtists(props.match.params.id));
+    },
+    fetchTopTracks: () => {
+      dispatch(fetchArtistTopTracks(props.match.params.id));
+    },
+    follow             : () => {
       dispatch(follow([props.match.params.id], 'artist'));
     },
-    unfollow   : () => {
+    unfollow           : () => {
       dispatch(unfollow([props.match.params.id], 'artist'));
     }
   };
@@ -34,4 +49,4 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const ArtistContainer = props => <Artist {...props} />;
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArtistContainer);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ArtistContainer));

@@ -13,26 +13,26 @@
   background-size: cover;
   background-position: 50% 50%;
   filter: grayscale(100%);
-  :local {
-    animation: background 120s infinite linear;
-    @keyframes background {
-      0% {
-        background-position: 50% 50%;
-      }
-      25% {
-        background-position: 100% 100%;
-      }
-      50% {
-        background-position: 50% 50%;
-      }
-      75% {
-        background-position: 0% 0%;
-      }
-      100% {
-        background-position: 50% 50%;
-      }
-    }
-  }
+  //:local {
+  //  animation: background 120s infinite linear;
+  //  @keyframes background {
+  //    0% {
+  //      background-position: 50% 50%;
+  //    }
+  //    25% {
+  //      background-position: 100% 100%;
+  //    }
+  //    50% {
+  //      background-position: 50% 50%;
+  //    }
+  //    75% {
+  //      background-position: 0% 0%;
+  //    }
+  //    100% {
+  //      background-position: 50% 50%;
+  //    }
+  //  }
+  //}
 }
 
 .background-overlay {

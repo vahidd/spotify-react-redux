@@ -3,15 +3,29 @@ import PropTypes from 'prop-types';
 import { Menu, Dropdown, Icon, Button } from 'antd';
 
 import SimilarArtists from 'Components/artist/SimilarArtists';
+import TopTracks from 'Components/artist/TopTracks';
 import { formatNumber, copyToClipboard } from 'Services/UtilsService';
 import styles from 'Styles/artist.scss';
 
 export default class Artist extends React.Component {
-  componentDidMount () {
-    this.props.fetchArtist();
+
+  constructor (props) {
+    super(props);
     this.followClick = this.followClick.bind(this);
     this.copyArtistLink = this.copyArtistLink.bind(this);
     this.copyArtistUri = this.copyArtistUri.bind(this);
+  }
+
+  componentDidMount () {
+    this.props.fetchArtist();
+    this.props.fetchSimilarArtists();
+    this.props.fetchTopTracks();
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.match.url !== this.props.match.url) {
+      this.props.fetchArtist();
+    }
   }
 
   followClick () {
@@ -78,7 +92,8 @@ export default class Artist extends React.Component {
               <Icon type="ellipsis"/>
             </a>
           </Dropdown>
-          <SimilarArtists artist={this.props.artist}/>
+          <SimilarArtists artists={this.props.similarArtists}/>
+          <TopTracks tracks={this.props.topTracks}/>
         </header>
       </div>
     </div>;
@@ -87,6 +102,10 @@ export default class Artist extends React.Component {
 
 Artist.propTypes = {
   artist               : PropTypes.shape({}).isRequired,
+  similarArtists       : PropTypes.array.isRequired,
+  topTracks            : PropTypes.array.isRequired,
+  fetchArtist          : PropTypes.func.isRequired,
+  fetchSimilarArtists  : PropTypes.func.isRequired,
   follow               : PropTypes.func.isRequired,
   unfollow             : PropTypes.func.isRequired,
   isFollowed           : PropTypes.oneOf([true, false, null]),
