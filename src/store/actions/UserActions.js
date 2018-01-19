@@ -106,3 +106,78 @@ export function unfollow (ids, type) {
       });
   };
 }
+
+export function containTracksRequest (tracks) {
+  return {
+    type: ActionsConstants.CONTAIN_TRACKS_REQUEST,
+    tracks
+  };
+}
+
+export function containTracksResponse (response, tracks) {
+  return {
+    type: ActionsConstants.CONTAIN_TRACKS_RESPONSE,
+    tracks,
+    response
+  };
+}
+
+export function containTracks (tracks) {
+  return (dispatch) => {
+    dispatch(containTracksRequest(tracks));
+    return axiosInstance().get(CONFIGS.API_URL + '/me/tracks/contains', {params: {ids: tracks.join(',')}})
+      .then((res) => {
+        dispatch(containTracksResponse(res.data, tracks));
+      });
+  };
+}
+
+export function saveTracksRequest (tracks) {
+  return {
+    type: ActionsConstants.SAVE_TRACKS_REQUEST,
+    tracks
+  };
+}
+
+export function saveTracksResponse (response, tracks) {
+  return {
+    type: ActionsConstants.SAVE_TRACKS_RESPONSE,
+    tracks,
+    response
+  };
+}
+
+export function saveTracks (tracks) {
+  return (dispatch) => {
+    dispatch(saveTracksRequest(tracks));
+    return axiosInstance().put(CONFIGS.API_URL + '/me/tracks', {}, {params: {ids: tracks.join(',')}})
+      .then((res) => {
+        dispatch(saveTracksResponse(res.data, tracks));
+      });
+  };
+}
+
+export function removeTracksRequest (tracks) {
+  return {
+    type: ActionsConstants.REMOVE_SAVED_TRACKS_REQUEST,
+    tracks
+  };
+}
+
+export function removeTracksResponse (response, tracks) {
+  return {
+    type: ActionsConstants.REMOVE_SAVED_TRACKS_RESPONSE,
+    tracks,
+    response
+  };
+}
+
+export function removeTracks (tracks) {
+  return (dispatch) => {
+    dispatch(removeTracksRequest(tracks));
+    return axiosInstance().delete(CONFIGS.API_URL + '/me/tracks', {params: {ids: tracks.join(',')}})
+      .then((res) => {
+        dispatch(removeTracksResponse(res.data, tracks));
+      });
+  };
+}

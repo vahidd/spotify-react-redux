@@ -29,3 +29,12 @@ export const getIsFollowing = (state, props, type) => {
 export const getFollowActionFetcingStatus = (state, type) => {
   return state.user.following[type].isFetching;
 };
+
+export const isSavedTracksFetching = (state) => {
+  return state.user.savedTracks.isFetching;
+};
+
+export const getSavedTracks = (state) => {
+  return state.user.savedTracks.tracks;
+};
+
