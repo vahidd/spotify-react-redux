@@ -1,21 +1,21 @@
 import * as ActionsConstants from 'Constants/ActionConstants';
 
-let defaultState = {
-  isFetching    : false,
-  artists       : {},
-  similarArtists: {
+let
+  defaultArtistState = {
     isFetching: false,
     artists   : {}
   },
-  topTracks     : {
+  defaultTopTracksState = {
     isFetching: false,
     artists   : {}
-  }
-};
+  },
+  defaultSimilarArtistsState = {
+    isFetching: false,
+    artists   : {}
+  };
 
-export function artist (state = defaultState, action) {
+export function artist (state = defaultArtistState, action) {
   switch (action.type) {
-
     case ActionsConstants.FETCH_ARTIST_REQUEST:
       return {...state, isFetching: true};
 
@@ -29,45 +29,51 @@ export function artist (state = defaultState, action) {
         }
       };
 
-    case ActionsConstants.FETCH_SIMILAR_ARTISTS_REQUEST:
-      return {
-        ...state,
-        similarArtists: {
-          ...state.similarArtists,
-          isFetching: true
-        }
-      };
+    default:
+      return state;
+  }
+}
 
-    case ActionsConstants.FETCH_SIMILAR_ARTISTS_RESPONSE:
-      return {
-        ...state,
-        similarArtists: {
-          isFetching: false,
-          artists   : {
-            ...state.similarArtists.artists,
-            [action.artistId]: action.response.artists
-          }
-        }
-      };
-
+export function topTracks (state = defaultTopTracksState, action) {
+  switch (action.type) {
     case ActionsConstants.FETCH_ARTIST_TOP_TRACKS_REQUEST:
       return {
         ...state,
-        topTracks: {
-          ...state.topTracks,
-          isFetching: true
-        }
+        ...state.topTracks,
+        isFetching: true
       };
 
     case ActionsConstants.FETCH_ARTIST_TOP_TRACKS_RESPONSE:
       return {
         ...state,
-        topTracks: {
-          isFetching: false,
-          artists   : {
-            ...state.topTracks.artists,
-            [action.artistId]: action.response.tracks
-          }
+        isFetching: false,
+        artists   : {
+          ...state.artists,
+          [action.artistId]: action.response.tracks
+        }
+      };
+
+    default:
+      return state;
+  }
+}
+
+export function similarArtists (state = defaultSimilarArtistsState, action) {
+  switch (action.type) {
+    case ActionsConstants.FETCH_SIMILAR_ARTISTS_REQUEST:
+      return {
+        ...state,
+        ...state.similarArtists,
+        isFetching: true
+      };
+
+    case ActionsConstants.FETCH_SIMILAR_ARTISTS_RESPONSE:
+      return {
+        ...state,
+        isFetching: false,
+        artists   : {
+          ...state.artists,
+          [action.artistId]: action.response.artists
         }
       };
 

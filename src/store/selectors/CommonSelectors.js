@@ -39,11 +39,11 @@ export const getSavedTracks = (state) => {
 };
 
 export const getSimilarArtists = (state, props) => {
-  let similar = state.artist.similarArtists.artists[props.match.params.id];
+  let similar = state.similarArtists.artists[props.match.params.id];
   return similar || [];
 };
 
 export const getArtistTopTracks = (state, props) => {
-  let tracks = state.artist.topTracks.artists[props.match.params.id];
+  let tracks = state.topTracks.artists[props.match.params.id];
   return tracks || [];
 };
