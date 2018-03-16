@@ -42,6 +42,7 @@
     "react-placeholder": "^2.0.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
+    "react-virtualized": "^9.18.5",
     "react-waypoint": "^7.3.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
