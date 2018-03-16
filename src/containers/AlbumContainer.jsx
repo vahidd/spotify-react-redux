@@ -7,13 +7,12 @@ import Album from 'Components/album/Album';
 
 const mapStateToProps = () => {
   return (state, props) => {
-    let
-      album = getAlbum(state, props),
-      artists = getAlbumArtists(state, album);
+    const album = getAlbum(state, props);
+    const artists = getAlbumArtists(state, album);
     return {
       album,
       artists,
-      savedTracks          : getSavedTracks(state),
+      savedTracks: getSavedTracks(state),
       isSavedTracksFetching: isSavedTracksFetching(state)
     };
   };
@@ -21,13 +20,13 @@ const mapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    fetchAlbum      : () => {
+    fetchAlbum: () => {
       dispatch(fetchAlbum(props.match.params.id, true));
     },
-    containTracks   : (tracks) => {
+    containTracks: (tracks) => {
       dispatch(containTracks(tracks));
     },
-    saveTracks      : (tracks) => {
+    saveTracks: (tracks) => {
       dispatch(saveTracks(tracks));
     },
     removeSavedTrack: (tracks) => {

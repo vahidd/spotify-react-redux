@@ -2,7 +2,7 @@ import * as ActionsConstants from 'Constants/ActionConstants';
 
 let defaultState = {
   isFetching: false,
-  data      : []
+  data: []
 };
 
 export function newReleases (state = defaultState, action) {
@@ -12,14 +12,12 @@ export function newReleases (state = defaultState, action) {
         ...state,
         isFetching: true
       };
-      break;
     case ActionsConstants.FETCH_NEW_RELEASES_RESPONSE:
       return {
         ...state,
         isFetching: false,
-        data      : [ ...state.data, ...action.response ]
+        data: [...state.data, ...action.response]
       };
-      break;
     default:
       return state;
   }

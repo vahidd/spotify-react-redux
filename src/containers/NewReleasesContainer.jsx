@@ -5,7 +5,7 @@ import NewReleases from 'Components/NewReleases';
 import { fetchNewReleases } from 'Actions/NewReleasesActions';
 
 const mapStateToProps = state => ({
-  newReleases: state.newReleases,
+  newReleases: state.newReleases
 });
 
 const NewReleasesContainer = props => <NewReleases {...props} />;

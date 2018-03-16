@@ -26,7 +26,7 @@ export function fetchCurrentUser () {
 
 function fetchFollowingStatusRequest (ids, type) {
   return {
-    type  : ActionsConstants.FETCH_FOLLOWING_STATUS_REQUEST,
+    type: ActionsConstants.FETCH_FOLLOWING_STATUS_REQUEST,
     ids,
     idType: type
   };
@@ -34,7 +34,7 @@ function fetchFollowingStatusRequest (ids, type) {
 
 function fetchFollowingStatusResponse (ids, type, response) {
   return {
-    type  : ActionsConstants.FETCH_FOLLOWING_STATUS_RESPONSE,
+    type: ActionsConstants.FETCH_FOLLOWING_STATUS_RESPONSE,
     ids,
     idType: type,
     response
@@ -53,15 +53,15 @@ export function fetchFollowingStatus (ids, type) {
 
 function followRequest (ids, type) {
   return {
-    type  : ActionsConstants.FOLLOW_REQUEST,
+    type: ActionsConstants.FOLLOW_REQUEST,
     ids,
-    idType: type,
+    idType: type
   };
 }
 
 function followResponse (ids, type, response) {
   return {
-    type  : ActionsConstants.FOLLOW_RESPONSE,
+    type: ActionsConstants.FOLLOW_RESPONSE,
     ids,
     idType: type,
     response
@@ -81,7 +81,7 @@ export function follow (ids, type) {
 
 function unfollowRequest (ids, type) {
   return {
-    type  : ActionsConstants.UNFOLLOW_REQUEST,
+    type: ActionsConstants.UNFOLLOW_REQUEST,
     ids,
     idType: type
   };
@@ -89,7 +89,7 @@ function unfollowRequest (ids, type) {
 
 function unfollowResponse (ids, type, response) {
   return {
-    type  : ActionsConstants.UNFOLLOW_RESPONSE,
+    type: ActionsConstants.UNFOLLOW_RESPONSE,
     ids,
     idType: type,
     response

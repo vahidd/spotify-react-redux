@@ -20,20 +20,30 @@ class AlbumItem extends React.Component {
 
   render () {
     let {album} = this.props;
-    return <div styleName="container">
-      <Link to={`/album/${album.id}`}>
-        <img src={this.getImage()}/>
-        <span styleName="name">{album.name}</span>
-      </Link>
-      <div>
-        {album.artists.map((artist, index) => {
-          return <Link key={index} to={`/artist/${artist.id}`} styleName="artist">
-            {artist.name}
-            {index + 1 !== album.artists.length && ', '}
-          </Link>;
-        })}
+    return (
+      <div styleName="container">
+        <Link to={`/album/${album.id}`}>
+          <img src={this.getImage()} />
+          <span styleName="name">
+            {album.name}
+          </span>
+        </Link>
+        <div>
+          {album.artists.map((artist, index) => {
+            return (
+              <Link
+                key={artist.id}
+                to={`/artist/${artist.id}`}
+                styleName="artist"
+              >
+                {artist.name}
+                {index + 1 !== album.artists.length && ', '}
+              </Link>
+            );
+          })}
+        </div>
       </div>
-    </div>;
+    );
   }
 }
 

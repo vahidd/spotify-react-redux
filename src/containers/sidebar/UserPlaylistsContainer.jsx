@@ -10,9 +10,9 @@ import {
 } from 'Actions/PlaylistActions';
 
 const mapStateToProps = state => ({
-  playlists                : state.playlists,
+  playlists: state.playlists,
   isCreatePlayListModalOpen: state.playlists.isCreatePlayListModalOpen,
-  isCreatingPlaylist       : state.playlists.isCreatingPlaylist
+  isCreatingPlaylist: state.playlists.isCreatingPlaylist
 });
 
 const UserPlaylistsContainer = props => <CurrentUserPlaylists {...props} />;

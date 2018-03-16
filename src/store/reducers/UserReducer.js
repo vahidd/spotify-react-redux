@@ -2,40 +2,38 @@ import { zipObject, times, constant } from 'lodash';
 
 import * as ActionsConstants from 'Constants/ActionConstants';
 
-let defaultState = {
-  isFetching : false,
-  profile    : null,
-  following  : {
+const defaultState = {
+  isFetching: false,
+  profile: null,
+  following: {
     artist: {
       isFetching: false,
-      ids       : {}
+      ids: {}
     },
-    user  : {
+    user: {
       isFetching: false,
-      ids       : {}
+      ids: {}
     }
   },
   savedTracks: {
     isFetching: false,
-    tracks    : {}
+    tracks: {}
   }
 };
 
 export function user (state = defaultState, action) {
   let newState;
   switch (action.type) {
-
     case ActionsConstants.FETCH_CURRENT_USER_REQUEST:
       return {
         ...state,
         isFetching: true
       };
-
     case ActionsConstants.FETCH_CURRENT_USER_RESPONSE:
       return {
         ...state,
         isFetching: false,
-        profile   : action.response
+        profile: action.response
       };
 
     case ActionsConstants.FOLLOW_REQUEST:
@@ -66,7 +64,7 @@ export function user (state = defaultState, action) {
         ...state,
         savedTracks: {
           isFetching: false,
-          tracks    : {
+          tracks: {
             ...state.savedTracks.tracks,
             ...zipObject(action.tracks, action.response)
           }
@@ -79,7 +77,7 @@ export function user (state = defaultState, action) {
         ...state,
         savedTracks: {
           isFetching: false,
-          tracks    : {
+          tracks: {
             ...state.savedTracks.tracks,
             ...zipObject(action.tracks, times(action.tracks.length, constant(action.type === ActionsConstants.SAVE_TRACKS_RESPONSE)))
           }

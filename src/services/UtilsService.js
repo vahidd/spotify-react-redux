@@ -19,8 +19,9 @@ export function axiosInstance () {
 }
 
 export function formatSeconds (seconds) {
-  let start = 11, len = 8;
-  if (3600 > seconds) {
+  let start = 11;
+  let len = 8;
+  if (seconds < 3600) {
     start = 14;
     len = 5;
   }
@@ -43,8 +44,7 @@ export function copyToClipboard (text) {
     document.execCommand('copy');
   } catch (err) {
     return false;
-  }
-  finally {
+  } finally {
     document.body.removeChild(textarea);
   }
   return true;

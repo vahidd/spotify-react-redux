@@ -17,9 +17,8 @@ function fetchNewReleasesResponse (response) {
 export function fetchNewReleases (limit = 40, offset = 0) {
   return (dispatch, getState) => {
     dispatch(fetchNewReleasesRequest());
-    let
-      params = {limit, offset},
-      {data} = getState().newReleases;
+    const params = {limit, offset};
+    const {data} = getState().newReleases;
     if (data && data.length >= (limit + offset)) {
       return fetchNewReleasesResponse(data.slice(offset, limit + offset));
     }

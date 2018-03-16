@@ -2,7 +2,7 @@
   "name": "spotify-react-redux",
   "version": "0.0.1",
   "description": "React redux implementation of Spotfiy bases on Spotify's web APIs",
-  "main": "index.js",
+  "main": "src/main.jsx",
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --colors --content-base ./src --config ./webpack.dev.config.js",
     "lint": "node ./node_modules/.bin/eslint ./src",
@@ -86,6 +86,9 @@
     },
     "env": {
       "browser": true
+    },
+    "globals": {
+      "CONFIGS": false
     },
     "rules": {
       "semi": "off",

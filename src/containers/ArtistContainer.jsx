@@ -18,9 +18,9 @@ const mapStateToProps = () => {
     let artist = getArtist(state, props);
     return {
       artist,
-      similarArtists       : getSimilarArtists(state, props),
-      topTracks            : getArtistTopTracks(state, props),
-      isFollowed           : getIsFollowing(state, props, 'artist'),
+      similarArtists: getSimilarArtists(state, props),
+      topTracks: getArtistTopTracks(state, props),
+      isFollowed: getIsFollowing(state, props, 'artist'),
       isFollowOrUnfollowing: getFollowActionFetchingStatus(state, 'artist')
     };
   };
@@ -28,7 +28,7 @@ const mapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    fetchArtist        : () => {
+    fetchArtist: () => {
       dispatch(fetchFollowingStatus([props.match.params.id], 'artist'));
       dispatch(fetchArtist(props.match.params.id));
     },
@@ -38,10 +38,10 @@ const mapDispatchToProps = (dispatch, props) => {
     fetchTopTracks: () => {
       dispatch(fetchArtistTopTracks(props.match.params.id));
     },
-    follow             : () => {
+    follow: () => {
       dispatch(follow([props.match.params.id], 'artist'));
     },
-    unfollow           : () => {
+    unfollow: () => {
       dispatch(unfollow([props.match.params.id], 'artist'));
     }
   };

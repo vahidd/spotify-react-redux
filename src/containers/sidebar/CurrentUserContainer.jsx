@@ -5,7 +5,7 @@ import CurrentUser from 'Components/sidebar/CurrentUser';
 import { fetchCurrentUser } from 'Actions/UserActions';
 
 const mapStateToProps = state => ({
-  user: state.user,
+  user: state.user
 });
 
 const CurrentUserContainer = props => <CurrentUser {...props} />;

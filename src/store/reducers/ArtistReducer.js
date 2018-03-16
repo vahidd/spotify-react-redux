@@ -1,18 +1,17 @@
 import * as ActionsConstants from 'Constants/ActionConstants';
 
-let
-  defaultArtistState = {
-    isFetching: false,
-    artists   : {}
-  },
-  defaultTopTracksState = {
-    isFetching: false,
-    artists   : {}
-  },
-  defaultSimilarArtistsState = {
-    isFetching: false,
-    artists   : {}
-  };
+const defaultArtistState = {
+  isFetching: false,
+  artists: {}
+};
+const defaultTopTracksState = {
+  isFetching: false,
+  artists: {}
+};
+const defaultSimilarArtistsState = {
+  isFetching: false,
+  artists: {}
+};
 
 export function artist (state = defaultArtistState, action) {
   switch (action.type) {
@@ -23,7 +22,7 @@ export function artist (state = defaultArtistState, action) {
       return {
         ...state,
         isFetching: false,
-        artists   : {
+        artists: {
           ...state.artists,
           [action.artistId]: action.response
         }
@@ -47,7 +46,7 @@ export function topTracks (state = defaultTopTracksState, action) {
       return {
         ...state,
         isFetching: false,
-        artists   : {
+        artists: {
           ...state.artists,
           [action.artistId]: action.response.tracks
         }
@@ -71,7 +70,7 @@ export function similarArtists (state = defaultSimilarArtistsState, action) {
       return {
         ...state,
         isFetching: false,
-        artists   : {
+        artists: {
           ...state.artists,
           [action.artistId]: action.response.artists
         }

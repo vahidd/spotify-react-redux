@@ -1,5 +1,4 @@
 export default class AuthService {
-
   static get allScopes () {
     return [
       'playlist-read-private',
@@ -19,7 +18,7 @@ export default class AuthService {
       'user-read-playback-state',
       'user-modify-playback-state',
       'user-read-currently-playing',
-      'user-read-recently-played',
+      'user-read-recently-played'
     ];
   }
 
@@ -51,5 +50,4 @@ export default class AuthService {
     queryArgs.push(`scope=${this.allScopes.join(' ')}`);
     return `https://accounts.spotify.com/authorize/?${queryArgs.join('&')}`;
   }
-
 }
