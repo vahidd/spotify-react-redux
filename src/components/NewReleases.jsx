@@ -1,19 +1,19 @@
 import React from 'react';
 import { Row, Col } from 'antd';
+import PropTypes from 'prop-types';
 import Waypoint from 'react-waypoint';
 
 import CommonStyles from 'Styles/common.scss';
 import AlbumItem from 'Components/common/AlbumItem';
 
 export default class NewReleases extends React.Component {
-
   constructor (props) {
     super(props);
     this.state = {
-      page          : 1,
+      page: 1,
       infiniteScroll: false
     };
-    this.onWaypointEnter = this.onWaypointEnter.bind(this);
+    this.handleWaypointEnter = this.handleWaypointEnter.bind(this);
   }
 
   componentDidMount () {
@@ -27,34 +27,49 @@ export default class NewReleases extends React.Component {
     clearTimeout(this.infiniteScrollTimeout);
   }
 
-  onWaypointEnter () {
+  handleWaypointEnter () {
     if (this.props.newReleases.isFetching) {
       return;
     }
-    this.setState({page: this.state.page + 1});
+    this.setState(prevState => ({page: prevState.page + 1}));
     this.props.fetchNewReleases(40, (this.state.page - 1) * 40);
   }
 
   render () {
-    let {data} = this.props.newReleases;
+    const {data} = this.props.newReleases;
     if (!data) {
       return null;
     }
-    return <div>
-      <div className={CommonStyles.title}>
-        <h1>New Releases</h1>
+    return (
+      <div>
+        <div className={CommonStyles.title}>
+          <h1>
+            New Releases
+          </h1>
+        </div>
+        <Row gutter={40}>
+          {data.map((album, index) => {
+            return (
+              <Col
+                key={album.id}
+                span={6}
+              >
+                <AlbumItem album={album} />
+              </Col>
+            );
+          })}
+        </Row>
+        {this.state.infiniteScroll &&
+        <Waypoint
+          bottomOffset="-600px"
+          onEnter={this.handleWaypointEnter}
+        />}
       </div>
-      <Row gutter={40}>
-        {data.map((album, index) => {
-          return <Col key={index} span={6}>
-            <AlbumItem album={album}/>
-          </Col>;
-        })}
-      </Row>
-      {this.state.infiniteScroll && <Waypoint
-        bottomOffset="-500px"
-        onEnter={this.onWaypointEnter}
-      />}
-    </div>;
+    );
   }
 }
+
+NewReleases.propTypes = {
+  newReleases: PropTypes.object.isRequired,
+  fetchNewReleases: PropTypes.func.isRequired
+};
