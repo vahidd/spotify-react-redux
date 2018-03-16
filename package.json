@@ -96,6 +96,7 @@
       "react/jsx-no-literals": "off",
       "react/forbid-component-props": "off",
       "react/sort-prop-types": "off",
+      "react/no-set-state": "off",
       "react/forbid-prop-types": "off",
       "react/destructuring-assignment": "off"
     }
