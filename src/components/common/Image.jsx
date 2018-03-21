@@ -35,7 +35,7 @@ export default class Image extends React.Component {
         <img
           {...props}
           onLoad={this.handleLoad}
-          style={{opacity: 0}}
+          style={{opacity: 0, maxWidth: '100%', maxHeight: '100%', height: 'auto', width: 'auto'}}
           ref={this.setRef}
         />
       </div>

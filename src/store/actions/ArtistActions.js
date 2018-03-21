@@ -72,3 +72,42 @@ export function fetchArtistTopTracks (artistId, country = 'US') {
       });
   };
 }
+
+function fetchArtistAlbumsRequest (artistId, group) {
+  return {
+    type: ActionsConstants.FETCH_ARTIST_ALBUMS_REQUEST,
+    artistId,
+    group
+  };
+}
+
+function fetchArtistAlbumsResponse (artistId, group, limit, offset, response) {
+  return {
+    type: ActionsConstants.FETCH_ARTIST_ALBUMS_RESPONSE,
+    artistId,
+    group,
+    limit,
+    offset,
+    response
+  };
+}
+
+export function fetchArtistAlbums (artistId, group, limit, offset, market = 'US') {
+  return (dispatch, getState) => {
+    dispatch(fetchArtistAlbumsRequest(artistId, group));
+    return axiosInstance().get(
+      CONFIGS.API_URL + `/artists/${artistId}/albums`,
+      {
+        params: {
+          include_groups: group,
+          market,
+          limit,
+          offset
+        }
+      }
+    )
+      .then((res) => {
+        dispatch(fetchArtistAlbumsResponse(artistId, group, limit, offset, res.data));
+      });
+  };
+}

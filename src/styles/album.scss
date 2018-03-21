@@ -47,17 +47,34 @@
 .tracks {
   list-style: none;
   padding: 0;
+  li {
+    border-top: 1px solid #f3f2f2;
+    border-radius: 3px;
+    transition: background-color 150ms;
+    &:hover {
+      background-color: #f3f2f2;
+    }
+  }
+  .track-len {
+    color: #5a5a5a;
+  }
+}
+
+.rect-shape {
+  :global {
+    composes: content-placeholder-animation;
+  }
+}
+
+.track-count {
+  display: block;
+  font-size: .9rem;
+  margin: 30px 0 5px 5px;
 }
 
 .track {
   display: block;
   padding: 13px 10px;
-  border-top: 1px solid #f3f2f2;
-  border-radius: 3px;
-  transition: background-color 150ms;
-  &:hover {
-    background-color: #f3f2f2;
-  }
 }
 
 .track-number {
@@ -68,7 +85,6 @@
   font-size: 1rem;
   display: inline-block;
   margin-right: 30px;
-  color: #5a5a5a;
 }
 
 .actions {
@@ -85,8 +101,3 @@
   }
 }
 
-.rect-shape {
-  :global {
-    composes: content-placeholder-animation;
-  }
-}

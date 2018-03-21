@@ -1,18 +1,29 @@
+@import "sidebar";
+
 .artist {
   height: 100%;
   position: relative;
 }
 
 .background {
-  position: absolute;
+  position: fixed;
   z-index: 1;
   top: -25px;
   bottom: -25px;
   right: -30px;
-  left: -30px;
+  left: $sidebar-width;
   background-size: cover;
   background-position: 50% 50%;
   filter: grayscale(100%);
+  &:before {
+    content: " ";
+    position: absolute;
+    height: 50px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
+  }
   //:local {
   //  animation: background 120s infinite linear;
   //  @keyframes background {
@@ -36,12 +47,12 @@
 }
 
 .background-overlay {
-  position: absolute;
+  position: fixed;
   z-index: 2;
   top: -25px;
   bottom: -25px;
   right: -30px;
-  left: -30px;
+  left: $sidebar-width;
   opacity: .5;
 
   //@source http://www.heropatterns.com/
@@ -109,6 +120,16 @@
   }
 }
 
+.section-title {
+  color: #fff;
+  font-size: 2.5rem;
+  margin-top: 20px;
+  margin-bottom: 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+}
+
 .show-more {
   color: #fff;
   border: 0;
@@ -116,4 +137,57 @@
   font-size: 1.5rem;
   margin-top: -5px;
   cursor: pointer;
+}
+
+.load-more {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.album-container {
+  padding: 0 90px;
+}
+
+.album {
+  display: block;
+  padding: 6px;
+}
+
+.album-image-container {
+  position: relative;
+  $position: 6px;
+  $hover-position: 10px;
+  &:before {
+    content: " ";
+    position: absolute;
+    top: $position;
+    bottom: $position;
+    left: $position;
+    right: $position;
+    border: 1px solid #fff;
+    opacity: .5;
+    transition: all 200ms;
+  }
+  &:hover {
+    &:before {
+      top: $hover-position;
+      left: $hover-position;
+      right: $hover-position;
+      bottom: $hover-position;
+    }
+  }
+}
+
+.album-image {
+  border-radius: 2px;
+  padding: 2px;
+}
+
+.album-name {
+  color: #fff;
+  margin-top: 2px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

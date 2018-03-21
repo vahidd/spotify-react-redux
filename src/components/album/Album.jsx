@@ -7,8 +7,8 @@ import ReactPlaceholder from 'react-placeholder';
 import { mapValues } from 'lodash';
 
 import Placeholder from 'Components/album/AlbumPlaceholder';
+import Track from 'Components/album/Track';
 import Image from 'Components/common/Image';
-import Track from 'Components/common/Track';
 
 export default class Album extends React.Component {
   constructor (props) {

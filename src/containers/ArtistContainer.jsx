@@ -2,14 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { fetchArtist, fetchSimilarArtists, fetchArtistTopTracks } from 'Actions/ArtistActions';
+import { fetchArtist, fetchSimilarArtists, fetchArtistAlbums } from 'Actions/ArtistActions';
 import { fetchFollowingStatus, follow, unfollow } from 'Actions/UserActions';
 import {
   getArtist,
   getIsFollowing,
   getFollowActionFetchingStatus,
   getSimilarArtists,
-  getArtistTopTracks
+  getArtistAlbums,
+  getArtistAppearsOn,
+  getArtistSingles
 } from 'Src/store/selectors/CommonSelectors';
 import Artist from 'Components/artist/Artist';
 
@@ -19,8 +21,10 @@ const mapStateToProps = () => {
     return {
       artist,
       similarArtists: getSimilarArtists(state, props),
-      topTracks: getArtistTopTracks(state, props),
       isFollowed: getIsFollowing(state, props, 'artist'),
+      albums: getArtistAlbums(state, props) || {},
+      singles: getArtistSingles(state, props) || {},
+      appearsOn: getArtistAppearsOn(state, props) || {},
       isFollowOrUnfollowing: getFollowActionFetchingStatus(state, 'artist')
     };
   };
@@ -35,8 +39,14 @@ const mapDispatchToProps = (dispatch, props) => {
     fetchSimilarArtists: () => {
       dispatch(fetchSimilarArtists(props.match.params.id));
     },
-    fetchTopTracks: () => {
-      dispatch(fetchArtistTopTracks(props.match.params.id));
+    fetchAlbum: (limit, offset) => {
+      dispatch(fetchArtistAlbums(props.match.params.id, 'album', limit, offset));
+    },
+    fetchSingle: (limit, offset) => {
+      dispatch(fetchArtistAlbums(props.match.params.id, 'single', limit, offset));
+    },
+    fetchAppearsOn: (limit, offset) => {
+      dispatch(fetchArtistAlbums(props.match.params.id, 'appears_on', limit, offset));
     },
     follow: () => {
       dispatch(follow([props.match.params.id], 'artist'));

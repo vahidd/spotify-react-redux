@@ -12,6 +12,10 @@ const defaultSimilarArtistsState = {
   isFetching: false,
   artists: {}
 };
+const defaultAlbumsState = {
+  isFetching: false,
+  artist: {}
+};
 
 export function artist (state = defaultArtistState, action) {
   switch (action.type) {
@@ -76,6 +80,153 @@ export function similarArtists (state = defaultSimilarArtistsState, action) {
         }
       };
 
+    default:
+      return state;
+  }
+}
+
+export function artistAlbums (state = defaultAlbumsState, action) {
+  switch (action.type) {
+    case ActionsConstants.FETCH_ARTIST_ALBUMS_REQUEST: {
+      const newState = {...state, isFetching: true};
+      if (action.group !== 'album') {
+        return state;
+      }
+      if (typeof state.artist[action.artistId] === 'undefined') {
+        newState.artist[action.artistId] = {
+          isFetching: true,
+          total: 0,
+          items: []
+        };
+      }
+      return {
+        ...newState,
+        isFetching: true,
+        artist: {
+          ...state.artist,
+          [action.artistId]: {
+            ...state.artist[action.artistId],
+            isFetching: true
+          }
+        }
+      };
+    }
+    case ActionsConstants.FETCH_ARTIST_ALBUMS_RESPONSE: {
+      if (action.group !== 'album') {
+        return state;
+      }
+      return {
+        ...state,
+        isFetching: false,
+        artist: {
+          ...state.artist,
+          [action.artistId]: {
+            ...state.artist[action.artistId],
+            total: action.response.total,
+            items: [...state.artist[action.artistId].items, ...action.response.items],
+            isFetching: false
+          }
+        }
+      };
+    }
+    default:
+      return state;
+  }
+}
+
+export function artistSingles (state = defaultAlbumsState, action) {
+  switch (action.type) {
+    case ActionsConstants.FETCH_ARTIST_ALBUMS_REQUEST: {
+      const newState = {...state, isFetching: true};
+      if (action.group !== 'single') {
+        return state;
+      }
+      if (typeof state.artist[action.artistId] === 'undefined') {
+        newState.artist[action.artistId] = {
+          isFetching: true,
+          total: 0,
+          items: []
+        };
+      }
+      return {
+        ...newState,
+        isFetching: true,
+        artist: {
+          ...state.artist,
+          [action.artistId]: {
+            ...state.artist[action.artistId],
+            isFetching: true
+          }
+        }
+      };
+    }
+    case ActionsConstants.FETCH_ARTIST_ALBUMS_RESPONSE: {
+      if (action.group !== 'single') {
+        return state;
+      }
+      return {
+        ...state,
+        isFetching: false,
+        artist: {
+          ...state.artist,
+          [action.artistId]: {
+            ...state.artist[action.artistId],
+            total: action.response.total,
+            items: [...state.artist[action.artistId].items, ...action.response.items],
+            isFetching: false
+          }
+        }
+      };
+    }
+    default:
+      return state;
+  }
+}
+
+export function artistAppearsOn (state = defaultAlbumsState, action) {
+  switch (action.type) {
+    case ActionsConstants.FETCH_ARTIST_ALBUMS_REQUEST: {
+      const newState = {...state, isFetching: true};
+      if (action.group !== 'appears_on') {
+        return state;
+      }
+      if (typeof state.artist[action.artistId] === 'undefined') {
+        newState.artist[action.artistId] = {
+          isFetching: true,
+          total: 0,
+          items: []
+        };
+      }
+      return {
+        ...newState,
+        isFetching: true,
+        artist: {
+          ...state.artist,
+          [action.artistId]: {
+            ...state.artist[action.artistId],
+            isFetching: true
+          }
+        }
+      };
+    }
+    case ActionsConstants.FETCH_ARTIST_ALBUMS_RESPONSE: {
+      if (action.group !== 'appears_on') {
+        return state;
+      }
+      return {
+        ...state,
+        isFetching: false,
+        artist: {
+          ...state.artist,
+          [action.artistId]: {
+            ...state.artist[action.artistId],
+            total: action.response.total,
+            items: [...state.artist[action.artistId].items, ...action.response.items],
+            isFetching: false
+          }
+        }
+      };
+    }
     default:
       return state;
   }

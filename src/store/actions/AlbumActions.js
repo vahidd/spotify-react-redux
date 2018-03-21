@@ -23,10 +23,11 @@ export function fetchAlbum (albumId, fetchArtists = false) {
     dispatch(fetchAlbumRequest());
     return axiosInstance().get(CONFIGS.API_URL + '/albums/' + albumId)
       .then((res) => {
-        if (fetchArtists)
+        if (fetchArtists) {
           each(res.data.artists, (artist) => {
             dispatch(fetchArtist(artist.id));
           });
+        }
         dispatch(fetchAlbumResponse(albumId, res.data));
       });
   };

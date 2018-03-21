@@ -47,3 +47,15 @@ export const getArtistTopTracks = (state, props) => {
   let tracks = state.topTracks.artists[props.match.params.id];
   return tracks || [];
 };
+
+export const getArtistAlbums = (state, props) => {
+  return state.artistAlbums.artist[props.match.params.id] || null;
+};
+
+export const getArtistSingles = (state, props) => {
+  return state.artistSingles.artist[props.match.params.id] || null;
+};
+
+export const getArtistAppearsOn = (state, props) => {
+  return state.artistAppearsOn.artist[props.match.params.id] || null;
+};

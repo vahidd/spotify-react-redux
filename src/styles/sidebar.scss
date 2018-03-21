@@ -1,6 +1,8 @@
+@import "variables";
+
 .sidebar {
   background: #222326;
-  width: 220px;
+  width: $sidebar-width;
   position: fixed;
   left: 0;
   min-height: 100%;
