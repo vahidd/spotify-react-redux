@@ -5,6 +5,7 @@
   "main": "src/main.jsx",
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --colors --content-base ./src --config ./webpack.dev.config.js",
+    "build": "NODE_ENV=production node ./node_modules/webpack/bin/webpack.js -p --config webpack.prod.config.js",
     "lint": "node ./node_modules/.bin/eslint ./src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -53,6 +54,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
+    "babel-plugin-import": "^1.6.7",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2017": "^6.24.1",
@@ -70,6 +72,7 @@
     "postcss-loader": "^2.0.8",
     "redux-logger": "^3.0.6",
     "sass-loader": "^6.0.6",
+    "webpack-bundle-analyzer": "^2.11.1",
     "webpack-dev-server": "^2.9.4"
   },
   "eslintConfig": {

@@ -5,6 +5,21 @@
     "react"
   ],
   "plugins": [
+    [
+      "import",
+      [
+        {
+          "libraryName": "antd",
+          "libraryDirectory": "lib",
+          "style": false
+        },
+        {
+          "libraryName": "lodash",
+          "camel2DashComponentName": false,
+          "libraryDirectory": ""
+        }
+      ]
+    ],
     "react-hot-loader/babel",
     "transform-object-rest-spread",
     [
