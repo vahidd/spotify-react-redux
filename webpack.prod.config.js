@@ -4,13 +4,14 @@ const configs = require('dotenv').config();
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: [
     path.resolve(__dirname, 'src') + '/main.jsx'
   ],
   output: {
-    publicPath: '/',
+    publicPath: '',
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[hash].js'
   },
@@ -94,6 +95,7 @@ module.exports = {
   },
 
   plugins: [
+    new CleanWebpackPlugin(path.resolve(__dirname, 'dist')),
     new HtmlWebpackPlugin({
       title: 'Spotify',
       template: './src/index.html',
