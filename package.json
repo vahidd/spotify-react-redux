@@ -104,6 +104,12 @@
       "react/jsx-sort-props": "off",
       "react/jsx-sort-default-props": "off",
       "react/jsx-no-literals": "off",
+      "react/jsx-max-depth": [
+        "error",
+        {
+          "max": 5
+        }
+      ],
       "react/forbid-component-props": "off",
       "react/sort-prop-types": "off",
       "react/no-set-state": "off",
