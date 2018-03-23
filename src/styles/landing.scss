@@ -1,0 +1,42 @@
+.container {
+  width: 100%;
+  height: 100%;
+  background: url("../images/login-bg.jpg") center center;
+  background-size: cover;
+}
+
+.inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -300px;
+  width: 600px;
+  text-align: center;
+}
+
+.title {
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 3rem;
+  &:before {
+    content: " ";
+    background: url("../images/spotify.svg") no-repeat left center;
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    display: inline-block;
+    position: relative;
+    top: 12px;
+  }
+}
+
+.login {
+  width: 230px;
+  height: 40px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 25px;
+}

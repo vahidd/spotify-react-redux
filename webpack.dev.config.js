@@ -36,10 +36,10 @@ module.exports = {
         loader: 'babel-loader'
       },
       {
-        test: /\.(ttf|eot|woff|woff2)$/,
+        test: /\.(ttf|eot|woff|woff2|jpg|svg)$/,
         loader: 'file-loader',
         options: {
-          name: 'fonts/[name].[ext]'
+          name: '[name].[ext]'
         }
       },
       {

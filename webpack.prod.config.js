@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: [
@@ -38,10 +39,10 @@ module.exports = {
         loader: 'babel-loader'
       },
       {
-        test: /\.(ttf|eot|woff|woff2)$/,
+        test: /\.(ttf|eot|woff|woff2|jpg|svg)$/,
         loader: 'file-loader',
         options: {
-          name: 'fonts/[name].[ext]'
+          name: '[name].[ext]'
         }
       },
       {
@@ -129,7 +130,10 @@ module.exports = {
       output: {
         comments: false
       }
-    })
+    }),
+    new CopyWebpackPlugin([
+      {from: path.resolve(__dirname, 'static'), to: path.resolve(__dirname, 'dist')}
+    ])
     // new BundleAnalyzerPlugin()
   ],
 

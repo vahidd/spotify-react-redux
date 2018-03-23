@@ -17,7 +17,7 @@ const render = Component => {
         </BrowserRouter>
       </Provider>
     </AppContainer>,
-    document.getElementById('app')
+    document.getElementById('root')
   );
 };
 render(Root);
