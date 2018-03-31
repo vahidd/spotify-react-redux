@@ -43,7 +43,29 @@ module.exports = {
         }
       },
       {
-        test: /\.scss$/,
+        test: /\.less/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              minimize: true
+            }
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              modifyVars: {
+                '@primary-color': '#21c55e'
+              }
+            }
+          }
+        ]
+      },
+      {
+        test: /\.s?css$/,
         use: [
           {
             loader: 'style-loader',
@@ -72,20 +94,6 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               sourceMap: true
-            }
-          }
-        ]
-      },
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              minimize: true
             }
           }
         ]

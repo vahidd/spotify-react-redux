@@ -11,7 +11,7 @@
         {
           "libraryName": "antd",
           "libraryDirectory": "lib",
-          "style": false
+          "style": true
         },
         {
           "libraryName": "lodash",

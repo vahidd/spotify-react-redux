@@ -6,27 +6,27 @@
     box-shadow: 0 3px 13px rgba(0, 0, 0, 0.1);
   }
   .ant-dropdown-menu {
-    padding: 10px 10px;
+    padding: 10px 10px !important;
     border: 1px solid #eee;
-    box-shadow: none;
+    box-shadow: none !important;
   }
   .ant-dropdown-menu-item-divider,
   .ant-dropdown-menu-submenu-title-divider {
     margin: 10px 17px;
-    background-color: #ececec;
+    background-color: #ececec !important;
   }
   .ant-dropdown-menu-item,
   .ant-dropdown-menu-submenu-title {
-    padding: 3px 17px;
+    padding: 3px 17px !important;
     a {
       font-size: 1rem;
       font-weight: 500;
-      color: #676767;
+      color: #6e6e6e !important;
     }
     &:hover {
-      background: transparent;
+      background: transparent !important;
       > a {
-        color: #000;
+        color: #000 !important;
       }
     }
     &-disabled {
@@ -38,56 +38,4 @@
       }
     }
   }
-
-  $primary-color: #21c55e;
-
-  //Ant Form
-  .ant-input {
-    &:focus,
-    &:hover {
-      border-color: $primary-color;
-      box-shadow: 0 0 0 2px lighten($primary-color, 46%);
-    }
-  }
-  .ant-checkbox-checked,
-  .ant-checkbox-indeterminate {
-    .ant-checkbox-inner {
-      background-color: $primary-color;
-      border-color: lighten($primary-color, 3%);
-    }
-  }
-  .ant-checkbox-input:focus + .ant-checkbox-inner,
-  .ant-checkbox-wrapper:hover .ant-checkbox-inner,
-  .ant-checkbox:hover .ant-checkbox-inner {
-    border-color: $primary-color;
-  }
-
-  // Ant Buttons
-  .ant-btn {
-    &:focus,
-    &:hover {
-      color: darken($primary-color, 2%);
-      border-color: darken($primary-color, 4%);
-    }
-    &:active {
-      color: darken($primary-color, 6%);
-      border-color: darken($primary-color, 8%);
-    }
-  }
-  .ant-btn-primary {
-    background-color: $primary-color;
-    border-color: lighten($primary-color, 3%);
-    &:focus,
-    &:hover {
-      color: #fff;
-      background-color: lighten($primary-color, 8%);
-      border-color: lighten($primary-color, 11%);
-    }
-    &:active {
-      color: #fff;
-      background-color: darken($primary-color, 2%);
-      border-color: darken($primary-color, 3%);
-    }
-  }
-
 }

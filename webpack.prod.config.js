@@ -3,9 +3,12 @@ const path = require('path');
 const configs = require('dotenv').config();
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const extractSCSS = new ExtractTextPlugin('assets/css/[name].[hash].css');
+const extractVendors = new ExtractTextPlugin('assets/css/[name].[hash].css');
 
 module.exports = {
   entry: [
@@ -14,7 +17,7 @@ module.exports = {
   output: {
     publicPath: '',
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[hash].js'
+    filename: 'assets/js/[name].[hash].js'
   },
   resolve: {
     extensions: ['.scss', '.js', '.jsx', '.css'],
@@ -39,29 +42,67 @@ module.exports = {
         loader: 'babel-loader'
       },
       {
-        test: /\.(ttf|eot|woff|woff2|jpg|svg)$/,
+        test: /\.(ttf|eot|woff|woff2)$/,
         loader: 'file-loader',
         options: {
-          name: '[name].[ext]'
+          name: 'assets/fonts/[name].[ext]'
         }
       },
       {
-        test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
+        test: /\.(jpg|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: 'assets/images/[name].[ext]'
+        }
+      },
+      {
+        test: /\.less/,
+        use: extractVendors.extract({
           fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader'
+            },
+            {
+              loader: 'less-loader',
+              options: {
+                modifyVars: {
+                  '@primary-color': '#21c55e'
+                }
+              }
+            }
+          ]
+        })
+      },
+      {
+        test: /\.css/,
+        use: extractVendors.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader'
+            }
+          ]
+        })
+      },
+      {
+        test: /\.scss$/,
+        use: extractSCSS.extract({
+          fallback: 'style-loader',
+          publicPath: '../../',
           use: [
             {
               loader: 'css-loader',
               options: {
                 localIdentName: '[name]__[local]___[hash:base64:10]',
                 modules: true,
-                sourceMap: false
+                importLoaders: 1
               }
             },
             {
               loader: 'postcss-loader',
               options: {
-                sourceMap: false,
+                sourcemap: true,
                 plugins: function () {
                   return [
                     require('autoprefixer')
@@ -72,70 +113,46 @@ module.exports = {
             {
               loader: 'sass-loader',
               options: {
-                sourceMap: false
+                sourcemap: true
               }
             }
           ]
         })
-      },
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              minimize: true
-            }
-          }
-        ]
       }
     ]
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      CONFIGS: JSON.stringify(configs.parsed),
+      'process.env.NODE_ENV': JSON.stringify('production')
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      output: {
+        comments: false
+      }
+    }),
     new CleanWebpackPlugin(path.resolve(__dirname, 'dist')),
     new HtmlWebpackPlugin({
       title: 'Spotify',
       template: './src/index.html',
       inject: 'body'
     }),
-    new webpack.DefinePlugin({
-      CONFIGS: JSON.stringify(configs.parsed),
-      'process.env.NODE_ENV': '"production"'
-    }),
-    new ExtractTextPlugin('styles.css'),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      filename: 'vendor.[hash].js',
+      filename: 'assets/js/vendor.[hash].js',
       minChunks: function (module) {
         return module.context && module.context.indexOf('node_modules') >= 0;
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-        screw_ie8: true,
-        conditionals: true,
-        unused: true,
-        comparisons: true,
-        sequences: true,
-        dead_code: true,
-        evaluate: true,
-        if_return: true,
-        join_vars: true
-      },
-      output: {
-        comments: false
-      }
-    }),
     new CopyWebpackPlugin([
       {from: path.resolve(__dirname, 'static'), to: path.resolve(__dirname, 'dist')}
-    ])
+    ]),
+    extractVendors,
+    extractSCSS
     // new BundleAnalyzerPlugin()
   ],
 
-  devtool: 'eval'
+  devtool: 'source-map'
 };
