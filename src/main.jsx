@@ -12,7 +12,7 @@ const render = Component => {
   ReactDOM.render(
     <AppContainer>
       <Provider store={store}>
-        <BrowserRouter>
+        <BrowserRouter basename="spotify-react-redux">
           <Component />
         </BrowserRouter>
       </Provider>
